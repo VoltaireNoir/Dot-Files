@@ -1,0 +1,372 @@
+modkey = "Mod4"
+mousekey = "Mod4"
+workspaces = []
+tags = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+layouts = ["MainAndVertStack", "MainAndHorizontalStack", "GridHorizontal", "Fibonacci", "Monocle"]
+scratchpad = []
+disable_current_tag_swap = false
+focus_behaviour = "Sloppy"
+focus_new_windows = true
+
+[[keybind]]
+command = "Execute"
+value = "rofi -show drun -show-icons"
+modifier = ["modkey"]
+key = "p"
+
+[[keybind]]
+command = "Execute"
+value = "rofi -show window -show-icons"
+modifier = ["Alt"]
+key = "Tab"
+
+[[keybind]]
+command = "Execute"
+value = "kitty"
+modifier = ["modkey"]
+key = "Return"
+
+[[keybind]]
+command = "Execute"
+value = "firefox"
+modifier = ["modkey", "Shift"]
+key = "b"
+
+
+[[keybind]]
+command = "Execute"
+value = "nautilus"
+modifier = ["modkey", "Shift"]
+key = "f"
+
+[[keybind]]
+command = "CloseWindow"
+modifier = ["modkey"]
+key = "w"
+
+[[keybind]]
+command = "SoftReload"
+modifier = ["modkey", "Shift"]
+key = "r"
+
+[[keybind]]
+command = "Execute"
+value = "loginctl kill-session $XDG_SESSION_ID"
+modifier = ["modkey", "Shift"]
+key = "q"
+
+[[keybind]]
+command = "Execute"
+value = "slock"
+modifier = ["modkey"]
+key = "Delete"
+
+
+[[keybind]]
+command = "MoveWindowUp"
+modifier = ["modkey", "Shift"]
+key = "k"
+
+[[keybind]]
+command = "MoveWindowDown"
+modifier = ["modkey", "Shift"]
+key = "j"
+
+[[keybind]]
+command = "MoveWindowTop"
+modifier = ["modkey", "Shift"]
+key = "Return"
+
+[[keybind]]
+command = "FloatingToTile"
+modifier = ["modkey"]
+key = "t"
+
+
+[[keybind]]
+command = "FocusWindowUp"
+modifier = ["modkey"]
+key = "k"
+
+[[keybind]]
+command = "FocusWindowDown"
+modifier = ["modkey"]
+key = "j"
+
+[[keybind]]
+command = "NextLayout"
+modifier = ["modkey"]
+key = "space"
+
+[[keybind]]
+command = "NextLayout"
+modifier = ["modkey", "Control"]
+key = "j"
+
+[[keybind]]
+command = "PreviousLayout"
+modifier = ["modkey", "Control"]
+key = "k"
+
+[[keybind]]
+command = "PreviousLayout"
+modifier = ["modkey", "Alt"]
+key = "space"
+
+[[keybind]]
+command = "RotateTag"
+modifier = ["modkey"]
+key = "z"
+
+[[keybind]]
+command = "FocusWorkspaceNext"
+modifier = ["modkey"]
+key = "Right"
+
+[[keybind]]
+command = "FocusWorkspacePrevious"
+modifier = ["modkey"]
+key = "Left"
+
+[[keybind]]
+command = "MoveWindowUp"
+modifier = ["modkey", "Shift"]
+key = "Up"
+
+[[keybind]]
+command = "MoveWindowDown"
+modifier = ["modkey", "Shift"]
+key = "Down"
+
+[[keybind]]
+command = "FocusWindowUp"
+modifier = ["modkey"]
+key = "Up"
+
+[[keybind]]
+command = "FocusWindowDown"
+modifier = ["modkey"]
+key = "Down"
+
+[[keybind]]
+command = "NextLayout"
+modifier = ["modkey", "Control"]
+key = "Up"
+
+[[keybind]]
+command = "PreviousLayout"
+modifier = ["modkey", "Control"]
+key = "Down"
+
+[[keybind]]
+command = "SetLayout"
+value = "Monocle"
+modifier = ["modkey"]
+key = "m"
+
+[[keybind]]
+command = "SetLayout"
+value = "MainAndVertStack"
+modifier = ["modkey"]
+key = "n"
+
+[[keybind]]
+command = "FocusNextTag"
+modifier = ["modkey"]
+key = "Right"
+
+[[keybind]]
+command = "FocusPreviousTag"
+modifier = ["modkey"]
+key = "Left"
+
+[[keybind]]
+command = "GotoTag"
+value = "1"
+modifier = ["modkey"]
+key = "1"
+
+[[keybind]]
+command = "GotoTag"
+value = "2"
+modifier = ["modkey"]
+key = "2"
+
+[[keybind]]
+command = "GotoTag"
+value = "3"
+modifier = ["modkey"]
+key = "3"
+
+[[keybind]]
+command = "GotoTag"
+value = "4"
+modifier = ["modkey"]
+key = "4"
+
+[[keybind]]
+command = "GotoTag"
+value = "5"
+modifier = ["modkey"]
+key = "5"
+
+[[keybind]]
+command = "GotoTag"
+value = "6"
+modifier = ["modkey"]
+key = "6"
+
+[[keybind]]
+command = "GotoTag"
+value = "7"
+modifier = ["modkey"]
+key = "7"
+
+[[keybind]]
+command = "GotoTag"
+value = "8"
+modifier = ["modkey"]
+key = "8"
+
+[[keybind]]
+command = "GotoTag"
+value = "9"
+modifier = ["modkey"]
+key = "9"
+
+[[keybind]]
+command = "MoveToTag"
+value = "1"
+modifier = ["modkey", "Shift"]
+key = "1"
+
+[[keybind]]
+command = "MoveToTag"
+value = "2"
+modifier = ["modkey", "Shift"]
+key = "2"
+
+[[keybind]]
+command = "MoveToTag"
+value = "3"
+modifier = ["modkey", "Shift"]
+key = "3"
+
+[[keybind]]
+command = "MoveToTag"
+value = "4"
+modifier = ["modkey", "Shift"]
+key = "4"
+
+[[keybind]]
+command = "MoveToTag"
+value = "5"
+modifier = ["modkey", "Shift"]
+key = "5"
+
+[[keybind]]
+command = "MoveToTag"
+value = "6"
+modifier = ["modkey", "Shift"]
+key = "6"
+
+[[keybind]]
+command = "MoveToTag"
+value = "7"
+modifier = ["modkey", "Shift"]
+key = "7"
+
+[[keybind]]
+command = "MoveToTag"
+value = "8"
+modifier = ["modkey", "Shift"]
+key = "8"
+
+[[keybind]]
+command = "MoveToTag"
+value = "9"
+modifier = ["modkey", "Shift"]
+key = "9"
+
+[[keybind]]
+command = "IncreaseMainWidth"
+value = "5"
+modifier = ["modkey"]
+key = "d"
+
+[[keybind]]
+command = "DecreaseMainWidth"
+value = "5"
+modifier = ["modkey"]
+key = "a"
+
+[[keybind]]
+command = "ToggleFullScreen"
+modifier = ["modkey"]
+key = "f"
+
+[[keybind]]
+command = "ToggleScratchPad"
+value = "Scratchpad"
+modifier = ["modkey"]
+key = "o"
+
+[[keybind]]
+command = "Execute"
+value = "brightnessctl s +5%"
+modifier = ["modkey"]
+key = "F6"
+
+[[keybind]]
+command = "Execute"
+value = "brightnessctl s 5%-"
+modifier = ["modkey"]
+key = "F5"
+
+[[keybind]]
+command = "Execute"
+value = "pulseaudio-ctl up"
+modifier = ["modkey"]
+key = "F3"
+
+[[keybind]]
+command = "Execute"
+value = "pulseaudio-ctl down"
+modifier = ["modkey"]
+key = "F2"
+
+[[keybind]]
+command = "Execute"
+value = "pulseaudio-ctl mute"
+modifier = ["modkey"]
+key = "F1"
+
+[[keybind]]
+command = "Execute"
+value = "gnome-screenshot"
+modifier = []
+key = "Print"
+
+[[keybind]]
+command = "Execute"
+value = "gnome-screenshot -c"
+modifier = ["Shift"]
+key = "Print"
+
+[[keybind]]
+command = "Execute"
+value = "gnome-screenshot -a"
+modifier = ["Control"]
+key = "Print"
+
+[[keybind]]
+command = "Execute"
+value = "gnome-screenshot -a -c"
+modifier = ["Control", "Shift"]
+key = "Print"
+
+[[keybind]]
+command = "Execute"
+value = "gnome-screenshot -w"
+modifier = ["Alt"]
+key = "Print"
