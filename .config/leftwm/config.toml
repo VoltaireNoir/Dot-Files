@@ -2,11 +2,11 @@ modkey = "Mod4"
 mousekey = "Mod4"
 workspaces = []
 tags = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
-layouts = ["MainAndVertStack", "MainAndHorizontalStack", "GridHorizontal", "Fibonacci", "Monocle"]
-scratchpad = []
-disable_current_tag_swap = false
+layouts = ["MainAndVertStack", "MainAndHorizontalStack", "GridHorizontal", "Monocle"]
+disable_current_tag_swap = true
 focus_behaviour = "Sloppy"
 focus_new_windows = true
+
 
 [[keybind]]
 command = "Execute"
@@ -16,9 +16,36 @@ key = "p"
 
 [[keybind]]
 command = "Execute"
+value = "rofi -show run"
+modifier = ["modkey"]
+key = "r"
+
+[[keybind]]
+command = "Execute"
 value = "rofi -show window -show-icons"
 modifier = ["Alt"]
 key = "Tab"
+
+[[keybind]]
+command = "Execute"
+value = '''
+#!/bin/sh
+case "$(echo -e "Shutdown\nRestart\nLogout\nSuspend\nLock" | dmenu \
+    -nb "${COLOR_BACKGROUND:-#151515}" \
+    -nf "${COLOR_DEFAULT:-#aaaaaa}" \
+    -sf "${COLOR_HIGHLIGHT:-#589cc5}" \
+    -sb "#1a1a1a" \
+    -i -p \
+    "Power:" -l 6)" in
+        Shutdown) exec systemctl poweroff;;
+        Restart) exec systemctl reboot;;
+        Logout) exec loginctl kill-session $XDG_SESSION_ID;;
+        Suspend) exec systemctl suspend;;
+        Lock) exec slock;;
+esac
+'''
+modifier = ["modkey"]
+key = "q"
 
 [[keybind]]
 command = "Execute"
@@ -29,15 +56,44 @@ key = "Return"
 [[keybind]]
 command = "Execute"
 value = "firefox"
-modifier = ["modkey", "Shift"]
-key = "b"
-
+modifier = ["modkey"]
+key = "KP_End"
 
 [[keybind]]
 command = "Execute"
 value = "nautilus"
-modifier = ["modkey", "Shift"]
-key = "f"
+modifier = ["modkey"]
+key = "KP_Insert"
+
+[[keybind]]
+command = "Execute"
+value = "discord"
+modifier = ["modkey"]
+key = "KP_Down"
+
+[[keybind]]
+command = "Execute"
+value = "kitty cmus"
+modifier = ["modkey"]
+key = "XF86XK_AudioPlay"
+
+[[keybind]]
+command = "Execute"
+value = "glava"
+modifier = ["modkey"]
+key = "XF86XK_AudioStop"
+
+[[keybind]]
+command = "Execute"
+value = "gnome-control-center"
+modifier = ["modkey"]
+key = "KP_Divide"
+
+[[keybind]]
+command = "Execute"
+value = "veracrypt"
+modifier = ["modkey"]
+key = "KP_Multiply"
 
 [[keybind]]
 command = "CloseWindow"
@@ -61,6 +117,11 @@ value = "slock"
 modifier = ["modkey"]
 key = "Delete"
 
+[[keybind]]
+command = "Execute"
+value = "kitty ~/Scripts/matrixss"
+modifier = ["modkey", "Shift"]
+key = "Delete"
 
 [[keybind]]
 command = "MoveWindowUp"
@@ -94,6 +155,11 @@ modifier = ["modkey"]
 key = "j"
 
 [[keybind]]
+command = "FocusWindowDown"
+modifier = ["modkey"]
+key = "Tab"
+
+[[keybind]]
 command = "NextLayout"
 modifier = ["modkey"]
 key = "space"
@@ -117,16 +183,6 @@ key = "space"
 command = "RotateTag"
 modifier = ["modkey"]
 key = "z"
-
-[[keybind]]
-command = "FocusWorkspaceNext"
-modifier = ["modkey"]
-key = "Right"
-
-[[keybind]]
-command = "FocusWorkspacePrevious"
-modifier = ["modkey"]
-key = "Left"
 
 [[keybind]]
 command = "MoveWindowUp"
@@ -306,40 +362,34 @@ modifier = ["modkey"]
 key = "f"
 
 [[keybind]]
-command = "ToggleScratchPad"
-value = "Scratchpad"
-modifier = ["modkey"]
-key = "o"
-
-[[keybind]]
 command = "Execute"
 value = "brightnessctl s +5%"
-modifier = ["modkey"]
-key = "F6"
+modifier = []
+key = "XF86XK_MonBrightnessUp"
 
 [[keybind]]
 command = "Execute"
 value = "brightnessctl s 5%-"
-modifier = ["modkey"]
-key = "F5"
+modifier = []
+key = "XF86XK_MonBrightnessDown"
 
 [[keybind]]
 command = "Execute"
 value = "pulseaudio-ctl up"
-modifier = ["modkey"]
-key = "F3"
+modifier = []
+key = "XF86XK_AudioRaiseVolume"
 
 [[keybind]]
 command = "Execute"
 value = "pulseaudio-ctl down"
-modifier = ["modkey"]
-key = "F2"
+modifier = []
+key = "XF86XK_AudioLowerVolume"
 
 [[keybind]]
 command = "Execute"
 value = "pulseaudio-ctl mute"
-modifier = ["modkey"]
-key = "F1"
+modifier = []
+key = "XF86XK_AudioMute"
 
 [[keybind]]
 command = "Execute"
@@ -370,3 +420,26 @@ command = "Execute"
 value = "gnome-screenshot -w"
 modifier = ["Alt"]
 key = "Print"
+
+# Scratchpads
+
+[[scratchpad]]
+name = "bpytop"
+value = "kitty bpytop"
+
+[[keybind]]
+command = "ToggleScratchPad"
+value = "bpytop"
+modifier = ["modkey", "Control"]
+key = "Delete"
+
+[[scratchpad]]
+name = "mixer"
+value = "kitty pulsemixer"
+
+[[keybind]]
+command = "ToggleScratchPad"
+value = "mixer"
+modifier = ["modkey", "Control"]
+key = "XF86XK_AudioPlay"
+
