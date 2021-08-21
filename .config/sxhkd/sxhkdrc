@@ -24,8 +24,8 @@ super + r
 alt + Tab
 	rofi -show window
 
-super + o ; {f,b,d,m,s,l}
-        {nautilus,firefox,discord,kitty cmus,gnome-control-center,logseq}
+super + o ; {f,b,d,m,s,l,t}
+        {nautilus,firefox,discord,kitty cmus,gnome-control-center,logseq,telegram-desktop}
 
 # Brightness and Volume Controls
 
