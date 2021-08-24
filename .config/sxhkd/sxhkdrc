@@ -24,8 +24,14 @@ super + r
 alt + Tab
 	rofi -show window
 
-super + o ; {f,b,d,m,s,l,t}
-        {nautilus,firefox,discord,kitty cmus,gnome-control-center,logseq,telegram-desktop}
+super + o ; {f,b,d,m,s,l,t,o}
+        {nautilus,firefox,discord,kitty cmus,gnome-control-center,logseq,telegram-desktop,obs}
+
+super + XF86AudioPlay
+	{glava --desktop}
+
+super + shift + XF86AudioPlay
+	{pkill glava}
 
 # Brightness and Volume Controls
 

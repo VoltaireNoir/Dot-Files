@@ -96,13 +96,15 @@ label-unmounted-foreground = ${colors.foreground-alt}
 type = internal/bspwm
 
 label-focused = %index%
-label-focused-background = #88c0d0
-label-focused-foreground = #4c566a
-;label-focused-underline= #4c566a
+;label-focused-background = #88c0d0
+label-focused-background = #d8dee9
+;label-focused-foreground = #4c566a
+label-focused-foreground = #2e3440
 label-focused-padding = 2
 
 label-occupied = %index%
-label-occupied-background = #5e81ac
+label-occupied-background = #bf616a
+;label-occupied-background = #5e81ac
 label-occupied-padding = 2
 
 label-urgent = %index%!
@@ -113,8 +115,6 @@ label-empty = %index%
 label-empty-foreground = #dbdbdb
 label-empty-padding = 2
 
-; Separator in between workspaces
-; label-separator = |
 
 [module/i3]
 type = internal/i3
