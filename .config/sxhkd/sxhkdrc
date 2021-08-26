@@ -24,8 +24,8 @@ super + r
 alt + Tab
 	rofi -show window
 
-super + o ; {f,b,d,m,s,l,t,o}
-        {nautilus,firefox,discord,kitty cmus,gnome-control-center,logseq,telegram-desktop,obs}
+super + o ; {f,b,d,m,s,l,t,o,M}
+        {nautilus,firefox,discord,kitty cmus,gnome-control-center,logseq,telegram-desktop,obs,spotify}
 
 super + XF86AudioPlay
 	{glava --desktop}
