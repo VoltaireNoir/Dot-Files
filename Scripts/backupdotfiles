@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+cd ~/ && cp -f .zshrc .spectrwm_us.conf .spectrwm.conf .xmobarrc ConfigBackup/Dot-Files/
+
+cp -rf .config/qtile .config/picom .config/leftwm .config/bspwm .config/sxhkd .config/polybar .config/kitty ConfigBackup/Dot-Files/.config/
+
+# Copy Xmonad Config
+cp -f .xmonad/xmonad.hs ~/ConfigBackup/Dot-Files/.xmonad/
+
+# Copy Custom Rofi config and themes
+cp -f /usr/share/rofi/themes/customblue.rasi /usr/share/rofi/themes/customfullscreen.rasi ~/ConfigBackup/Dot-Files/rofi/themes/ && cp -f .config/rofi/ ConfigBackup/Dot-Files/.config/
+
+# Copy DWM Config
+cp -f .dwm/config.h ConfigBackup/Dot-Files/.dwm/
+
+# Copy Scripts
+cp -rf Scripts ConfigBackup/Dot-Files/
+
+# Push changes to Github
+cd ConfigBackup/Dot-Files/ && git add . && git commit -m "update" && git push

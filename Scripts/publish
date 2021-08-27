@@ -1,0 +1,4 @@
+#!/bin/zsh
+cd ~/Publish && rm -rf publish/*
+mv test/* publish/
+cd publish/ && git add . && git commit -m "update" && git push

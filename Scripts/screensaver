@@ -1,0 +1,10 @@
+#!/bin/sh
+while true; do
+    idle=0
+    idletime=$((90*1000))
+    while [ $idle -lt $idletime ];do
+        idle=`xprintidle`
+        sleep 1
+    done
+    exec kitty matrixss
+done

@@ -1,0 +1,4 @@
+#!/bin/zsh
+leftwm-command "ToggleFullScreen"
+sleep .15
+cmatrix -C blue -s
