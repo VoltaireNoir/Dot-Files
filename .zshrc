@@ -52,7 +52,7 @@ alias vpnd="protonvpn-cli d"
 #eval "$(starship init zsh)"
 
 # Paths
- export PATH=$PATH:~/Scripts:~/.emacs.d/bin
+ export PATH=$PATH:~/Scripts
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
