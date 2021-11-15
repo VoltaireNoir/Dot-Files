@@ -26,24 +26,14 @@
 
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget, hook 
-from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
+from libqtile import bar, layout, widget, hook
+from libqtile.config import Click, Drag, Group, EzKey as Keyz, Key, KeyChord, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
-from libqtile.config import EzKey as Keyz
 
 mod = "mod4"
-# terminal = guess_terminal()
-
-colors = [["#282c34", "#282c34"], # panel background
-          ["#3d3f4b", "#434758"], # background for current screen tab
-          ["#ffffff", "#ffffff"], # font color for group names
-          ["#ff5555", "#ff5555"], # border line color for current tab
-          ["#74438f", "#74438f"], # border line color for 'other tabs' and color for 'odd widgets'
-          ["#4f76c7", "#4f76c7"], # color for the 'even widgets'
-          ["#e1acff", "#e1acff"], # window name
-          ["#ecbbfb", "#ecbbfb"]] # backbround for inactive screens
-
+terminal = "kitty"
+#guess_terminal()
 
 keys = [
     # Switch between windows
@@ -75,18 +65,13 @@ keys = [
     Key([mod, "shift"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
 
-    # Move between workspaces
-
-    Key([mod], "Right", lazy.screen.next_group()),
-    Key([mod], "Left", lazy.screen.prev_group()),
-
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
     # multiple stack panes
     Key([mod, "shift"], "Return", lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack"),
-    Key([mod], "Return", lazy.spawn("kitty"), desc="Launch terminal"),
+    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
     # Toggle between different layouts as defined below
     Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
@@ -94,28 +79,20 @@ keys = [
 
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    # Rofi and Dmenu
-    Key([mod], "r", lazy.spawn("rofi -show run"), desc="Show rofi run menu"),
-    Key([mod], "p", lazy.spawn("rofi -show drun -show-icons"), desc="Show rofi app menu"),
-    Key([mod, "shift"], "n", lazy.spawn("networkmanager_dmenu"), desc="Manage network with dmenu"),
-    Keyz("A-<Tab>",lazy.spawn("rofi -show window -show-icons")),
+    Key([mod], "r", lazy.spawncmd(),
+        desc="Spawn a command using a prompt widget"),
 
-    # Window Management
-    Key([mod], "f", lazy.window.toggle_floating(), desc="toggle floating"),
-    Key([mod,"shift"], "f", lazy.window.toggle_fullscreen(), desc="toggle fullscreen"),
+    Key([mod, "shift", "control"], "h", lazy.layout.swap_column_left()),
+    Key([mod, "shift", "control"], "l", lazy.layout.swap_column_right()),
 
-    # Lockscreen
-    Keyz("M-<Delete>",lazy.spawn("xlock -mode rain")),
+    # Vol and brightness control
+    Key([], "XF86AudioMute", lazy.spawn("pulseaudio-ctl mute")),
 
-    # Applications
     KeyChord([mod], "o", [
-        Key([], "b", lazy.spawn("firefox")),
-        Key([], "f", lazy.spawn("nautilus")),
-        Key([], "m", lazy.spawn("kitty cmus")),
-        Key([], "l", lazy.spawn("logseq")),
-    ]),
+        Key([], "b", lazy.spawn("firefox"))
+    ])
 
-]
+]   
 
 groups = [Group(i) for i in "123456789"]
 
@@ -126,9 +103,8 @@ for i in groups:
             desc="Switch to group {}".format(i.name)),
 
         # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=False),
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
             desc="Switch to & move focused window to group {}".format(i.name)),
-
         # Or, use below if you prefer not to switch to that group.
         # # mod1 + shift + letter of group = move focused window to group
         # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
@@ -137,13 +113,13 @@ for i in groups:
 
 layouts = [
     layout.Columns(
-        border_focus_stack='#ff5133',
-        border_focus='#33e1ff',
-        border_normal='#00000000',
-        margin=9,
-        insert_position=1,
-        border_width=3,
+        border_focus='#d8dee9',
+        border_normal='#3b4252',
+        border_focus_stack=['#d75f5f', '#8f3d3d'],
+        border_width=2,
+        margin=5,
         grow_amount=5,
+        insert_position=1
         ),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
@@ -160,23 +136,20 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='Ubuntu Mono',
-    fontsize=14,
+    font='sans',
+    fontsize=12,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
 
 screens = [
-
-        Screen(
+    Screen(
         top=bar.Bar(
-            [   
-                #widget.CurrentLayoutIcon(),
+            [
+                widget.CurrentLayout(),
                 widget.GroupBox(),
                 widget.Prompt(),
-                # widget.WindowName(),
-                # widget.WindowTabs(),
-                widget.TaskList(max_title_width=150,highlight_method='block'),
+                widget.WindowName(),
                 widget.Chord(
                     chords_colors={
                         'launch': ("#ff0000", "#ffffff"),
@@ -184,20 +157,10 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.Systray(),
-                widget.Clock(format='  %a %b %d %R '),
-                widget.Backlight(
-                    backlight_name="nvidia_0",
-                    format='BR: {percent:2.0%}',
-                    change_command='brightnessctl s {0}',
-                    step=5,
-                    ),
-                widget.Volume(fmt='VOL: {}'),
-                widget.Battery(format='BAT:{percent:2.0%}  ', update_interval='15'),
+                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
+                widget.QuickExit(),
             ],
-            28,
-            opacity=0.9,
-            background='#141414'
-            # background='#005a7a'
+            24,
         ),
     ),
 ]
@@ -213,7 +176,6 @@ mouse = [
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
-main = None  # WARNING: this is deprecated and will be removed soon
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
@@ -228,17 +190,23 @@ floating_layout = layout.Floating(float_rules=[
     Match(title='pinentry'),  # GPG key password entry
 ])
 auto_fullscreen = True
-focus_on_window_activation = "focus"
+focus_on_window_activation = "smart"
+reconfigure_screens = True
 
-# Auto Start Apps
+# If things like steam games want to auto-minimize themselves when losing
+# focus, should we respect this or not?
+auto_minimize = True
 
+
+# Startup script
 import os
 import subprocess
 
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser('~/.config/qtile/autostart.sh')
-    subprocess.call([home]),
+    subprocess.call([home])
+
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the

@@ -1,8 +1,8 @@
 #!/bin/zsh
 
-cd ~/ && cp -f .zshrc .spectrwm_us.conf .spectrwm.conf .xmobarrc ConfigBackup/Dot-Files/
+cd ~/ && cp -f .zshrc .xmobarrc ConfigBackup/Dot-Files/
 
-cp -rf .config/qtile .config/picom .config/leftwm .config/bspwm .config/sxhkd .config/polybar .config/kitty ConfigBackup/Dot-Files/.config/
+cp -rf .config/qtile .config/picom .config/bspwm .config/sxhkd .config/polybar .config/kitty ConfigBackup/Dot-Files/.config/
 
 # Copy Xmonad Config
 cp -f .xmonad/xmonad.hs ~/ConfigBackup/Dot-Files/.xmonad/

@@ -1,0 +1,6 @@
+#!/bin/sh
+sudo hostname "WiFi Router" && hostname
+sudo ip link set wlan0 down
+sudo macchanger --mac=0e:4f:94:b3:b4:f5 wlan0
+sudo ip link set wlan0 up
+echo "Incoginito mode enabled!"

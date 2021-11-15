@@ -2,11 +2,16 @@
 export PATH=$PATH:~/Scripts
 
 pgrep -x sxhkd > /dev/null || sxhkd &  
-pkill polybar && sleep 0.5
-picom --experimental-backends --use-ewmh-active-win &
+xrandr --dpi 120
+picom &
 nitrogen --restore &
+light -I
+pkill lxsession
 lxsession &
-polybar -r mainbar &
+xbacklightmon &
+/usr/lib/xfce4/notifyd/xfce4-notifyd &
+killall -q polybar && sleep 0.5
+polybar mainbar -r & disown
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
@@ -26,6 +31,12 @@ bspc config focus_follows_pointer	true
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
+bspc rule -a origin.exe state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a GLava border=off
+bspc rule -a Steam state=floating
+bspc rule -a Volume Control state=floating
+bspc rule -a Pavucontrol state=floating
+
+

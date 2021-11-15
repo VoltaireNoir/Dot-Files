@@ -5,54 +5,54 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Use powerline
-USE_POWERLINE="true"
-# Source manjaro-zsh-configuration
-if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
-  source /usr/share/zsh/manjaro-zsh-config
-fi
-# Use manjaro zsh prompt
-if [[ -e /usr/share/zsh/manjaro-zsh-prompt ]]; then
-  source /usr/share/zsh/manjaro-zsh-prompt
-fi
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt autocd extendedglob nomatch
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+#zstyle : ":completion:*" menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+autoload -Uz compinit
+compinit
+
+# Enable Vim mode
+#bindkey -v
+
+# End of lines added by compinstall
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
-# Custom aliases
+# Aliases
+
+alias s="pacman -Ss"
+alias as="paru"
+alias i="sudo pacman -S"
+alias ai="paru -S"
+alias r="sudo pacman -Rcs"
+alias update="sudo pacman -Syu"
+alias updatemirrors="sudo pacman -Syyu"
+alias au="paru -Syu"
+alias clean="sudo pacman -Sc"
+alias aclean="paru -Sc"
+alias cls="clear"
+alias mixer="pulsemixer"
 alias ls="exa --icons"
 alias lss="exa -a --icons"
 alias lsp="exa -l --icons"
 alias lssp="exa -la --icons"
-alias data="cd /mnt/80486C04486BF6F6"
-alias mv="mv -i"
-alias cls="clear"
-alias remove="pamac remove -o"
-alias install="pamac install"
-alias search="pamac search"
-alias update="pamac update"
-alias checkupdates="pamac checkupdates"
-alias pacman="sudo pacman"
-alias matrix="cmatrix -C blue"
-alias mixer="pulsemixer"
-alias vpn="protonvpn-cli c"
+alias matrix="cmatrix -s -C blue" 
+alias incognito="sudo incognito"
+alias data="cd /mnt/data"
+alias vpnc="protonvpn-cli c"
 alias vpnd="protonvpn-cli d"
-
-# Print out Animals and Sayings
-#fortune -s | cowthink -f $(ls /usr/share/cows/*.cow|shuf -n 1) | lolcat
-#Print animals and sayings along wiht neofetch
-#neofetch --ascii "$(fortune -n 80 -s | cowsay -W 30 -f $(cat /usr/share/cows/neolist|shuf -n 1))" | lolcat
-
-# Spaceship
-#autoload -U promptinit; promptinit
-#prompt spaceship
-
-#SPACESHIP_PROMPT_SEPARATE_LINE=false
-#SPACESHIP_CHAR_SYMBOL=">"
-
-# Starship prompt
-#eval "$(starship init zsh)"
-
-# Paths
- export PATH=$PATH:~/Scripts
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -26,6 +26,7 @@ foreground-alt = #000000
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
+state = #88c0d0
 
 dim-value = 0.5
 
@@ -54,13 +55,15 @@ font-0 = Ubuntu Mono:pixelsize=9
 font-1 = unifont:fontformat=truetype:size=10:antialias=false
 ;font-2 = JetBrainsMono Nerd Font Mono:style=Regular:size=12
 ;font-2 = Siji:style=Regular:pixelsize=12
-modules-left = bspwm i3
+;font-2 = FiraCode Nerd Font:style=Regular:pixelsize=12
+modules-left = bspwm
 modules-center = xwindow
-modules-right = backlight pulseaudio memory cpu wlan eth battery date 
+modules-right = backlight backlight2 backlight3 pulseaudio memory cpu wlan eth battery date 
 tray-position = right
 tray-padding = 1
 cursor-click = pointer
 cursor-scroll = ns-resize
+wm-restack = bspwm
 
 [module/xwindow]
 type = internal/xwindow
@@ -103,7 +106,7 @@ label-focused-foreground = #2e3440
 label-focused-padding = 2
 
 label-occupied = %index%
-label-occupied-background = #bf616a
+label-occupied-background = #81a1c1
 ;label-occupied-background = #5e81ac
 label-occupied-padding = 2
 
@@ -117,17 +120,22 @@ label-empty-padding = 2
 
 format = <label-state> <label-mode>
 
-label-monocle = | M |
-label-tiled = | T |
-label-floating = | F |
-label-pseudotiled = | P |
-label-locked = | L |
-label-locked-foreground = #bd2c40
-label-sticky = | S |
-label-sticky-foreground = #fba922
-label-private = | P |
-label-private-foreground = #bd2c40
-label-marked = | Mk |
+label-monocle =  Mono 
+label-monocle-foreground = ${colors.state}
+label-tiled =  Tile 
+label-tiled-foreground = ${colors.state}
+label-floating ="  (float) "
+label-floating-foreground = ${colors.state}
+label-pseudotiled ="  (tile) "
+label-pseudotiled-foreground = ${colors.state}
+label-locked ="  (l) "
+label-locked-foreground = ${colors.state}
+label-sticky ="  (s) "
+label-sticky-foreground = ${colors.state}
+label-private ="  (p) "
+label-private-foreground = ${colors.state}
+label-marked ="  (m) "
+label-marked-foreground = ${colors.state}
 
 
 [module/mpd]
@@ -144,6 +152,44 @@ label-song-maxlen = 25
 label-song-ellipsis = true
 
 [module/backlight]
+type = internal/backlight
+card = amdgpu_bl1
+format = BL <label>
+format-underline = #ffffff
+label = %percentage%%
+enable-scroll = true  
+use-actual-brightness = true
+bar-width = 8   
+bar-indicator = |
+bar-indicator-foreground = #fff
+bar-indicator-font = 2
+bar-fill = ─  
+bar-fill-font = 2    
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+
+[module/backlight3]
+type = internal/backlight
+card = amdgpu_bl0
+format = BL <label>
+format-underline = #ffffff
+label = %percentage%%
+enable-scroll = true  
+use-actual-brightness = true
+bar-width = 8   
+bar-indicator = |
+bar-indicator-foreground = #fff
+bar-indicator-font = 2
+bar-fill = ─  
+bar-fill-font = 2    
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+
+[module/backlight2]
 type = internal/backlight
 card = nvidia_0
 format = BL <label>
@@ -186,7 +232,7 @@ format = <label>
 
 [module/wlan]
 type = internal/network
-interface = wlp4s0
+interface = wlan0
 interval = 3.0
 
 format-connected-prefix = "  "

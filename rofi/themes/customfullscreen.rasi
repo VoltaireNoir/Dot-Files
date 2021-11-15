@@ -7,7 +7,7 @@
 * {
     selected-normal-foreground:  rgba ( 0, 96, 160, 100 % );
     foreground:                  rgba ( 0, 176, 239, 100 % );
-    normal-foreground:           @foreground;
+    normal-foreground:           rgba ( 0, 176, 239, 100 % );
     alternate-normal-background: rgba ( 0, 0, 0, 0 % );
     red:                         rgba ( 220, 50, 47, 100 % );
     selected-urgent-foreground:  rgba ( 0, 96, 160, 100 % );
@@ -62,7 +62,7 @@ listview {
     border:       2px dash 0px 0px ;
     border-color: @separatorcolor;
     spacing:      2px ;
-    scrollbar:    true;
+    scrollbar:    false;
     padding:      2px 0px 0px ;
     columns:      1;
     dynamic:      true;

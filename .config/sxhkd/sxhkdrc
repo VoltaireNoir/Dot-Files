@@ -24,8 +24,8 @@ super + r
 alt + Tab
 	rofi -show window
 
-super + o ; {f,b,d,m,s,l,t,o,M}
-        {nautilus,firefox,discord,kitty cmus,gnome-control-center,logseq,telegram-desktop,obs,spotify}
+super + o ; {f,F,b,d,m,s,l,t,o,M,q,r,w,R,n}
+        {kitty ranger,nautilus,firefox,discord,kitty musikcube,steam,logseq,telegram-desktop,obs,spotify,qbittorrent,firefoxpwa site launch 01FEZAAEWG3WPF1842B60YT7C3,firefoxpwa site launch 01FGS4M1ET8XF0GV92XGEYJ4G5,pw-jack -p 256 reaper,standard-notes}
 
 super + XF86AudioPlay
 	{glava --desktop}
@@ -36,19 +36,30 @@ super + shift + XF86AudioPlay
 # Brightness and Volume Controls
 
 XF86AudioMute
-	pulseaudio-ctl mute
+	pulsemixer --toggle-mute
 
 XF86AudioRaiseVolume
-	pulseaudio-ctl up
+	pulsemixer --change-volume +2
 
 XF86AudioLowerVolume
-	pulseaudio-ctl down
+	pulsemixer --change-volume -2
 
 XF86MonBrightnessUp
-	brightnessctl s +5%
+	light -A 2 && light -O
 
 XF86MonBrightnessDown
-	brightnessctl s 5%-
+	light -U 2 && light -O
+
+# Screenshot Options
+
+Print
+	xfce4-screenshooter -f
+
+shift + Print
+	xfce4-screenshooter -r
+
+ctrl + Print
+	xfce4-screenshooter -w
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -72,7 +83,7 @@ super + m
 
 # send the newest marked node to the newest preselected node
 super + y
-	bspc node newest.marked.local -n newest.!automatic.local
+	bspc node -g marked && bspc node newest.marked.local -n newest.!automatic.local
 
 # swap the current node and the biggest window
 super + shift + Return
@@ -93,7 +104,10 @@ super + ctrl + {m,x,y,z}
 # Reset nodes
 
 super + e
-	bspc node any -E 
+	bspc node @/ -E
+
+super + b
+	bspc node @/ -B 
 
 # Shuffling and moving nodes at once
 

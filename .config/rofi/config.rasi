@@ -1,5 +1,5 @@
 configuration {
-	modi: "window,run,drun,emoji";
+	modi: "window,run,drun";
 	width: 40;
 /*	lines: 15;*/
 /*	columns: 1;*/
@@ -44,7 +44,7 @@ configuration {
 /*	line-padding: 1;*/
 /*	filter: ;*/
 /*	separator-style: "dash";*/
-/*	hide-scrollbar: false;*/
+/*	hide-scrollbar: true;*/
 /*	fullscreen: false;*/
 /*	fake-transparency: true;*/
 /*	dpi: -1;*/
