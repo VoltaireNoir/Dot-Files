@@ -16,5 +16,8 @@ cp -f .dwm/config.h ConfigBackup/Dot-Files/.dwm/
 # Copy Scripts
 cp -rf Scripts ConfigBackup/Dot-Files/
 
+# Copy Grub Settings
+cp /etc/default/grub ConfigBackup/Dot-Files/etc/default/
+
 # Push changes to Github
 cd ConfigBackup/Dot-Files/ && git add . && git commit -m "update" && git push
