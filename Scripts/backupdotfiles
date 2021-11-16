@@ -5,7 +5,7 @@ cd ~/ && cp -f .zshrc .xmobarrc ConfigBackup/Dot-Files/
 cp -rf .config/qtile .config/picom .config/bspwm .config/sxhkd .config/polybar .config/kitty ConfigBackup/Dot-Files/.config/
 
 # Copy Xmonad Config
-cp -f .xmonad/xmonad.hs ~/ConfigBackup/Dot-Files/.xmonad/
+cp -f .config/xmonad/xmonad.hs ~/ConfigBackup/Dot-Files/.xmonad/
 
 # Copy Custom Rofi config and themes
 cp -f /usr/share/rofi/themes/customblue.rasi /usr/share/rofi/themes/customfullscreen.rasi ~/ConfigBackup/Dot-Files/rofi/themes/ && cp -rf .config/rofi/ ConfigBackup/Dot-Files/.config/
