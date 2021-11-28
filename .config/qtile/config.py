@@ -69,6 +69,10 @@ keys = [
     Key([mod, "shift", "control"], "h", lazy.layout.swap_column_left()),
     Key([mod, "shift", "control"], "l", lazy.layout.swap_column_right()),
 
+    # Toggle Floating and Fullscreen
+    Key([mod], "f", lazy.window.toggle_fullscreen()),
+    Key([mod], "s", lazy.window.toggle_floating()),
+
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with
@@ -83,16 +87,36 @@ keys = [
 
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "p", lazy.spawn("rofi -show drun"),
-        desc="Spawn a command using a prompt widget"),
+    Key([mod], "p", lazy.spawn("rofi -show drun"), desc="Spawn a command using a prompt widget"),
+    Key([mod], "r", lazy.spawn("rofi -show run"), desc="Spawn a command using a prompt widget"),
+    Key(["mod1"], "Tab", lazy.spawn("rofi -show window"), desc="Spawn a command using a prompt widget"),
     Key([mod], "b", lazy.spawn("polybar mainbarqt -r"), lazy.restart(), desc="Launch polybar"),
     Key([mod, "shift"], "b", lazy.spawn("killall -q polybar"), desc="Launch polybar"),
 
             # Vol and brightness control
-    Key([], "XF86AudioMute", lazy.spawn("pulseaudio-ctl mute")),
+    Key([], "XF86AudioMute", lazy.spawn("pulsemixer --toggle-mute")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pulsemixer --change-volume +2")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pulsemixer --change-volume -2")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("light -A 2")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("light -U 2")),
+    Key([], "Print", lazy.spawn("xfce4-screenshooter -f")),
+    Key(["shift"], "Print", lazy.spawn("xfce4-screenshooter -r")),
+    Key(["control"], "Print", lazy.spawn("xfce4-screenshooter -w")),
 
     KeyChord([mod], "o", [
-        Key([], "b", lazy.spawn("firefox"))
+        Key([], "b", lazy.spawn("firefox")),
+        Key([], "f", lazy.spawn("kitty ranger")),
+        Key([], "F", lazy.spawn("nautilus")),
+        Key([], "r", lazy.spawn("roam-research")),
+        Key([], "t", lazy.spawn("telegram-desktop")),
+        Key([], "l", lazy.spawn("logseq")),
+        Key([], "d", lazy.spawn("discord")),
+        Key([], "o", lazy.spawn("obs")),
+        Key([], "m", lazy.spawn("kitty musikcube")),
+        Key(["shift"], "m", lazy.spawn("spotify")),
+        Key([], "n", lazy.spawn("standard-note")),
+        Key([], "w", lazy.spawn("firefoxpwa site launch 01FGS4M1ET8XF0GV92XGEYJ4G5")),
+        Key(["shift"], "r", lazy.spawn("pw-jack -p 256 reaper")),
     ])
 ]
 
@@ -114,7 +138,17 @@ for i in groups:
     ])
 
 layouts = [
-    layout.Columns(border_focus='#d8dee9', border_normal='#3b4252',border_focus_stack=['#d75f5f', '#8f3d3d'], border_width=3, grow_amount=2, margin=6, insert_position=1),
+    layout.Columns(
+        border_focus='#d8dee9',
+        border_normal='#3b4252',
+        border_focus_stack=['#00c1d6', '#00c1d6'],
+        border_normal_stack='008c9b',
+        border_on_single=False,
+        border_width=3,
+        grow_amount=2,
+        margin=6,
+        insert_position=1,
+        ),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -156,7 +190,10 @@ dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(float_rules=[
+floating_layout = layout.Floating(
+    border_focus='#d8dee9',
+    border_normal='#3b4252',
+    float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
     Match(wm_class='confirmreset'),  # gitk
@@ -165,7 +202,8 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='ssh-askpass'),  # ssh-askpass
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
-])
+]
+)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
