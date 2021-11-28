@@ -1,5 +1,4 @@
 #!/bin/sh
-export PATH=$PATH:~/Scripts
 
 xrandr --dpi 120
 lxsession &
