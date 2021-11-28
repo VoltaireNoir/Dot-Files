@@ -19,5 +19,8 @@ cp -rf Scripts ConfigBackup/Dot-Files/
 # Copy Grub Settings
 cp /etc/default/grub ConfigBackup/Dot-Files/etc/default/
 
+# Copy VIMRC
+cp /etc/vimrc ConfigBackup/Dot-Files/etc/
+
 # Push changes to Github
 cd ConfigBackup/Dot-Files/ && git add . && git commit -m "update" && git push
