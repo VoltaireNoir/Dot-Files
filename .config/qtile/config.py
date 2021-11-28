@@ -33,7 +33,8 @@ from libqtile.utils import guess_terminal
 
 mod = "mod4"
 terminal = "kitty"
-#guess_terminal()
+
+# guess_terminal()
 
 keys = [
     # Switch between windows
@@ -46,24 +47,27 @@ keys = [
 
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
-    Key([mod, "control"], "h", lazy.layout.shuffle_left(),
+    Key([mod, "shift"], "h", lazy.layout.shuffle_left(),
         desc="Move window to the left"),
-    Key([mod, "control"], "l", lazy.layout.shuffle_right(),
+    Key([mod, "shift"], "l", lazy.layout.shuffle_right(),
         desc="Move window to the right"),
-    Key([mod, "control"], "j", lazy.layout.shuffle_down(),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down(),
         desc="Move window down"),
-    Key([mod, "control"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
 
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
-    Key([mod, "shift"], "h", lazy.layout.grow_left(),
+    Key([mod, "control"], "h", lazy.layout.grow_left(),
         desc="Grow window to the left"),
-    Key([mod, "shift"], "l", lazy.layout.grow_right(),
+    Key([mod, "control"], "l", lazy.layout.grow_right(),
         desc="Grow window to the right"),
-    Key([mod, "shift"], "j", lazy.layout.grow_down(),
+    Key([mod, "control"], "j", lazy.layout.grow_down(),
         desc="Grow window down"),
-    Key([mod, "shift"], "k", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
+
+    Key([mod, "shift", "control"], "h", lazy.layout.swap_column_left()),
+    Key([mod, "shift", "control"], "l", lazy.layout.swap_column_right()),
 
     # Toggle between split and unsplit sides of stack.
     # Split = all windows displayed
@@ -74,25 +78,23 @@ keys = [
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 
     # Toggle between different layouts as defined below
-    Key([mod], "space", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "m", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
 
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(),
+    Key([mod], "p", lazy.spawn("rofi -show drun"),
         desc="Spawn a command using a prompt widget"),
+    Key([mod], "b", lazy.spawn("polybar mainbarqt -r"), lazy.restart(), desc="Launch polybar"),
+    Key([mod, "shift"], "b", lazy.spawn("killall -q polybar"), desc="Launch polybar"),
 
-    Key([mod, "shift", "control"], "h", lazy.layout.swap_column_left()),
-    Key([mod, "shift", "control"], "l", lazy.layout.swap_column_right()),
-
-    # Vol and brightness control
+            # Vol and brightness control
     Key([], "XF86AudioMute", lazy.spawn("pulseaudio-ctl mute")),
 
     KeyChord([mod], "o", [
         Key([], "b", lazy.spawn("firefox"))
     ])
-
-]   
+]
 
 groups = [Group(i) for i in "123456789"]
 
@@ -112,15 +114,7 @@ for i in groups:
     ])
 
 layouts = [
-    layout.Columns(
-        border_focus='#d8dee9',
-        border_normal='#3b4252',
-        border_focus_stack=['#d75f5f', '#8f3d3d'],
-        border_width=2,
-        margin=5,
-        grow_amount=5,
-        insert_position=1
-        ),
+    layout.Columns(border_focus='#d8dee9', border_normal='#3b4252',border_focus_stack=['#d75f5f', '#8f3d3d'], border_width=3, grow_amount=2, margin=6, insert_position=1),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -144,24 +138,7 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
-        top=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.Systray(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-                widget.QuickExit(),
-            ],
-            24,
-        ),
+        top=bar.Gap(25),
     ),
 ]
 
@@ -197,8 +174,8 @@ reconfigure_screens = True
 # focus, should we respect this or not?
 auto_minimize = True
 
+# Startup Script
 
-# Startup script
 import os
 import subprocess
 
@@ -217,3 +194,4 @@ def autostart():
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
