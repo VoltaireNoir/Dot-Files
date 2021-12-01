@@ -1,12 +1,15 @@
 #!/usr/bin/bash
 export PATH=$PATH:~/Scripts
 
-xrandr --dpi 115
-pgrep -x sxhkd > /dev/null || sxhkd &
+xrandr --dpi 120
+pkill sxhkd
+pgrep -x sxhkd > /dev/null || sxhkd -c ~/.config/sxhkd/sxhkdrcdwm &
 light -I
 pkill lxsession
 lxsession &
-/usr/lib/xfce4/notifyd/xfce4-notifyd &
 nitrogen --restore &
-picom --config ~/.config/picom/picom.conf &
+picom &
+pkill slstatus
 slstatus &
+pkill xfce4-notifyd
+/usr/lib/xfce4/notifyd/xfce4-notifyd &
