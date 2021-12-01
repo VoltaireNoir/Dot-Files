@@ -1,0 +1,8 @@
+#!/usr/bin/env python
+
+h1 = input("Enter Hash 1:\n")
+h2 = input("Enter Hash 2:\n")
+if h1==h2:
+    print("It's a match! Don't get too excited though, it's only a hash.")
+else:
+    print("Error: Hashes do not match. Good luck downloading the file again.")

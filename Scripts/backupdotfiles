@@ -11,7 +11,8 @@ cp -f .config/xmonad/xmonad.hs ~/ConfigBackup/Dot-Files/.xmonad/
 cp -f /usr/share/rofi/themes/customblue.rasi /usr/share/rofi/themes/customfullscreen.rasi ~/ConfigBackup/Dot-Files/rofi/themes/ && cp -rf .config/rofi/ ConfigBackup/Dot-Files/.config/
 
 # Copy DWM Config
-cp -f .dwm/config.h ConfigBackup/Dot-Files/.dwm/
+cp -rf .dwm ConfigBackup/Dot-Files/
+cp -rf .slstatus ConfigBackup/Dot-Files/
 
 # Copy Scripts
 cp -rf Scripts ConfigBackup/Dot-Files/

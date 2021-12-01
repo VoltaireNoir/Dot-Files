@@ -69,6 +69,20 @@ super + Escape
 # bspwm hotkeys
 #
 
+# Tiling Scheme
+super + shift + a
+	bspc config automatic_scheme "alternate" && bspc config initial_polarity "second_child"
+
+super + a
+	bspc config automatic_scheme "spiral" && bspc config initial_polarity "first_child"
+
+# Initial Polarity
+super + comma
+	bspc config initial_polarity "first_child"
+
+super + period
+	bspc config initial_polarity "second_child"
+
 # quit/restart bspwm
 super + shift + {q,r}
 	bspc {quit,wm -r}
@@ -101,7 +115,7 @@ super + {t,shift + t,s,f}
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
-# Reset nodes
+# Reset / balance nodes
 
 super + e
 	bspc node @/ -E
