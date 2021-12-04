@@ -1,0 +1,3 @@
+#!/bin/sh
+cd ~/.dwm
+sudo make clean install
