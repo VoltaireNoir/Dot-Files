@@ -11,5 +11,7 @@ nitrogen --restore &
 picom &
 pkill slstatus
 slstatus &
+pkill pnmixer
+pnmixer &
 pkill xfce4-notifyd
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
