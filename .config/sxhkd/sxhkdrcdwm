@@ -26,7 +26,7 @@ super + shift + XF86AudioPlay
 	{pkill glava}
 
 super + shift + w
-	xkill
+	forcekill
 
 # Brightness and Volume Controls
 
