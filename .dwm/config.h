@@ -13,7 +13,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int user_bh            = 25;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 //static const char *fonts[]          = { "FiraCode Nerd Font Mono:size=9" };
-static const char *fonts[]          = { "unifont:size=9" };
+static const char *fonts[]          = { "unifont:size=8" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#2e3440";
 //static const char col_gray1[]       = "#222222";
