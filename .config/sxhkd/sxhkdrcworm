@@ -1,0 +1,105 @@
+# lock screen and dmenu
+
+super + Delete
+	slock
+
+super + q
+	exec ~/Scripts/dmenupowermenu
+
+# program launcher
+
+super + Return
+	kitty
+
+super + r
+	rofi -show run
+
+alt + Tab
+	rofi -show window
+
+super + o ; {f,F,b,d,m,s,l,t,o,M,q,r,w,R,n}
+        {kitty ranger,thunar,firefox,discord,kitty musikcube,steam,logseq,telegram-desktop,obs,spotify,qbittorrent,roam-research,firefoxpwa site launch 01FGS4M1ET8XF0GV92XGEYJ4G5,pw-jack -p 256 reaper,standard-notes}
+
+super + o ; {c}
+	{code}
+
+super + XF86AudioPlay
+	{glava --desktop}
+
+super + shift + XF86AudioPlay
+	{pkill glava}
+
+super + shift + w
+	forcekill
+
+# Brightness and Volume Controls
+
+XF86AudioMute
+	pulsemixer --toggle-mute
+
+XF86AudioRaiseVolume
+	pulsemixer --change-volume +2
+
+XF86AudioLowerVolume
+	pulsemixer --change-volume -2
+
+XF86MonBrightnessUp
+	light -A 2 && light -O
+
+XF86MonBrightnessDown
+	light -U 2 && light -O
+
+# Screenshot Options
+
+Print
+	xfce4-screenshooter -f
+
+shift + Print
+	xfce4-screenshooter -r
+
+ctrl + Print
+	xfce4-screenshooter -w
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Worm
+#
+#
+
+# Restart worm
+super + shift + r
+	worm
+
+# Quit worm
+ctrl + shift + q
+	pkill worm
+
+# Close app
+super + w
+	wormc close-active-client
+
+# Maximize app
+super + f
+	wormc maximize-active-client
+
+# Switch active tag
+super + {1,2,3,4,5,6,7,8,9}
+	wormc switch-tag {1,2,3,4,5,6,7,8,9}
+
+# Switch tag
+super + shift + {1,2,3,4,5,6,7,8,9}
+	wormc move-active-tag {1,2,3,4,5,6,7,8,9}
+
+# Set master windows
+super + shift + Return
+	wormc master-active
+
+# Float a window
+super + s
+	wormc float-active
+
+# Pywal apply
+super + ctrl + w
+	~/.config/worm/pywal.sh

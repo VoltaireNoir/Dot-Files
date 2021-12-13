@@ -8,6 +8,8 @@ pkill pnmixer
 pkill nitrogen
 pkill nm-applet
 pkill xfce4-notifyd
+pkill lxqt-policykit-agent
+lxqt-policykit-agent &
 nm-applet &
 pgrep -x sxhkd > /dev/null || sxhkd -c ~/.config/sxhkd/sxhkdrcdwm &
 light -I
