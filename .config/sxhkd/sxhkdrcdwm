@@ -6,6 +6,12 @@ super + Delete
 super + q
 	exec ~/Scripts/dmenupowermenu
 
+super + z
+	dunstctl set-paused toggle
+
+super + shift + z
+	dunstctl history-pop
+
 # program launcher
 super + r
 	rofi -show run
@@ -14,16 +20,10 @@ alt + Tab
 	rofi -show window
 
 super + o ; {f,F,b,d,m,s,l,t,o,M,q,r,w,R,n}
-        {kitty ranger,thunar,firefox,discord,kitty musikcube,steam,logseq,telegram-desktop,obs,spotify,qbittorrent,roam-research,firefoxpwa site launch 01FGS4M1ET8XF0GV92XGEYJ4G5,pw-jack -p 256 reaper,standard-notes}
+        {kitty ranger,thunar,firefox,discord,kitty ncmpcpp &! sleep 0.1; kitty cava,steam,logseq,telegram-desktop,obs,spotify,qbittorrent,roam-research,firefoxpwa site launch 01FGS4M1ET8XF0GV92XGEYJ4G5,pw-jack -p 256 reaper,standard-notes}
 
 super + o ; {c}
 	{code}
-
-super + XF86AudioPlay
-	{glava --desktop}
-
-super + shift + XF86AudioPlay
-	{pkill glava}
 
 super + shift + w
 	forcekill
@@ -55,6 +55,20 @@ shift + Print
 
 ctrl + Print
 	xfce4-screenshooter -w
+
+# MPD Controls
+
+XF86AudioPlay
+	mpc toggle
+
+XF86AudioStop
+	mpc stop
+
+XF86AudioPrev
+	mpc prev
+
+XF86AudioNext
+	mpc next
 
 # make sxhkd reload its configuration files:
 super + Escape

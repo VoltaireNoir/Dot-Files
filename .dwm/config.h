@@ -11,8 +11,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 24;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]          = { "NotoSansMono Nerd Font:style=Condensed,Regular:size=9"};
+static const int user_bh            = 25;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const char *fonts[]          = { "RobotoMono Nerd Font:style=Regular:size=9"};
 //static const char *fonts[]          = { "unifont:size=8" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#2e3440";
@@ -56,14 +56,14 @@ static const Rule rules[] = {
 static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
-static int attachbelow = 1;    /* 1 means attach after the currently active window */
+static int attachbottom = 1;    /* 1 means attach after the currently active window */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "T",      tile },    /* first entry is default */
-	{ "M",      monocle },
-	{ "F",      NULL },    /* no layout function means floating behavior */
+	{ "[T]",      tile },    /* first entry is default */
+	{ "[M]",      monocle },
+	{ "[F]",      NULL },    /* no layout function means floating behavior */
 };
 
 /* key definitions */
@@ -72,7 +72,8 @@ static const Layout layouts[] = {
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} }, \
+	{ MODKEY|Mod1Mask,           KEY,      swaptags,       {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -86,7 +87,7 @@ static const char *rofi[]  = { "rofi", "-show", "drun", NULL };
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY|ShiftMask,             XK_Tab,           toggleAttachBelow,           {0} },
+	{ MODKEY|ShiftMask,             XK_Tab,           toggleAttachBottom,           {0} },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = rofi } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },

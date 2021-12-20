@@ -7,9 +7,11 @@ pkill slstatus
 pkill pnmixer
 pkill nitrogen
 pkill nm-applet
-pkill xfce4-notifyd
-pkill lxqt-policykit-agent
-lxqt-policykit-agent &
+# pkill lxqt-policykit-agent
+pkill dunst
+pkill polkit-gnome-au
+# lxqt-policykit-agent &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 nm-applet &
 pgrep -x sxhkd > /dev/null || sxhkd -c ~/.config/sxhkd/sxhkdrcdwm &
 light -I
@@ -17,4 +19,4 @@ nitrogen --restore &
 picom &
 slstatus &
 pnmixer &
-/usr/lib/xfce4/notifyd/xfce4-notifyd &
+dunst &

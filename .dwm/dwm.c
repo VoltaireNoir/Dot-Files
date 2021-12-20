@@ -178,8 +178,8 @@ static int applysizehints(Client *c, int *x, int *y, int *w, int *h, int interac
 static void arrange(Monitor *m);
 static void arrangemon(Monitor *m);
 static void attach(Client *c);
-static void attachBelow(Client *c);
-static void toggleAttachBelow();
+static void attachBottom(Client *c);
+static void toggleAttachBottom();
 static void attachstack(Client *c);
 static void buttonpress(XEvent *e);
 static void checkotherwm(void);
@@ -297,6 +297,7 @@ static int xerror(Display *dpy, XErrorEvent *ee);
 static int xerrordummy(Display *dpy, XErrorEvent *ee);
 static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
+static void swaptags(const Arg *arg);
 
 /* variables */
 static const char autostartblocksh[] = "autostart_blocking.sh";
@@ -487,24 +488,17 @@ attach(Client *c)
 }
 
 void
-attachBelow(Client *c)
+attachBottom(Client *c)
 {
-	//If there is nothing on the monitor or the selected client is floating, attach as normal
-	if(c->mon->sel == NULL || c->mon->sel == c || c->mon->sel->isfloating) {
-		attach(c);
-		return;
-	}
-
-	//Set the new client's next property to the same as the currently selected clients next
-	c->next = c->mon->sel->next;
-	//Set the currently selected clients next property to the new client
-	c->mon->sel->next = c;
-
+	Client **tc;
+	c->next = NULL;
+	for (tc = &c->mon->clients; *tc; tc = &(*tc)->next);
+	*tc = c;
 }
 
-void toggleAttachBelow()
+void toggleAttachBottom()
 {
-	attachbelow = !attachbelow;
+	attachbottom = !attachbottom;
 }
 
 void
@@ -1300,8 +1294,8 @@ manage(Window w, XWindowAttributes *wa)
 		c->isfloating = c->oldstate = trans != None || c->isfixed;
 	if (c->isfloating)
 		XRaiseWindow(dpy, c->win);
-	if( attachbelow )
-		attachBelow(c);
+	if( attachbottom )
+		attachBottom(c);
 	else
 		attach(c);
 	attachstack(c);
@@ -1982,8 +1976,8 @@ sendmon(Client *c, Monitor *m)
 	detachstack(c);
 	c->mon = m;
 	c->tags = m->tagset[m->seltags]; /* assign tags of target monitor */
-	if( attachbelow )
-		attachBelow(c);
+	if( attachbottom )
+		attachBottom(c);
 	else
 		attach(c);
 	attachstack(c);
@@ -2656,8 +2650,8 @@ updategeom(void)
 					m->clients = c->next;
 					detachstack(c);
 					c->mon = mons;
-					if( attachbelow )
-						attachBelow(c);
+					if( attachbottom )
+						attachBottom(c);
 					else
 						attach(c);
 					attachstack(c);
@@ -3067,6 +3061,28 @@ zoom(const Arg *arg)
 		if (!c || !(c = nexttiled(c->next)))
 			return;
 	pop(c);
+}
+
+void
+swaptags(const Arg *arg)
+{
+	unsigned int newtag = arg->ui & TAGMASK;
+	unsigned int curtag = selmon->tagset[selmon->seltags];
+
+	if (newtag == curtag || !curtag || (curtag & (curtag-1)))
+		return;
+
+	for (Client *c = selmon->clients; c != NULL; c = c->next) {
+		if((c->tags & newtag) || (c->tags & curtag))
+			c->tags ^= curtag ^ newtag;
+
+		if(!c->tags) c->tags = newtag;
+	}
+
+	selmon->tagset[selmon->seltags] = newtag;
+
+	focus(NULL);
+	arrange(selmon);
 }
 
 int
