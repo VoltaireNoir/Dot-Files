@@ -25,6 +25,12 @@ super + o ; {f,F,b,d,m,s,l,t,o,M,q,r,w,R,n}
 super + o ; {c}
 	{code}
 
+super + a
+	kitty pulsemixer
+
+super + shift + a
+	pavucontrol
+
 super + shift + w
 	forcekill
 
