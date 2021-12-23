@@ -1,5 +1,5 @@
 configuration {
-	modi: "window,run,drun,emoji";
+	modi: "window,run,drun";
 	width: 40;
 /*	lines: 15;*/
 /*	columns: 1;*/

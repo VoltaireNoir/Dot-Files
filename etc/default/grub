@@ -1,11 +1,11 @@
 # GRUB boot loader configuration
 
-GRUB_DEFAULT=saved
+GRUB_DEFAULT=0
 GRUB_TIMEOUT=3
 GRUB_DISTRIBUTOR="EndeavourOS"
-GRUB_CMDLINE_LINUX_DEFAULT="nvidia-drm.modeset=1 resume=UUID=b032583c-860e-488e-88cc-1aef610fe129 loglevel=3 nowatchdog nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1" 
+GRUB_CMDLINE_LINUX_DEFAULT="quiet resume=UUID=d0d583b3-5d74-45dd-ae9e-6587b41b8336 loglevel=3 nowatchdog nvme_load=YES nvidia-drm.modeset=1 nvidia.NVreg_RegistryDwords=EnableBrightnessControl=1"
 GRUB_CMDLINE_LINUX=""
-
+GRUB_DISABLE_OS_PROBER=false
 # Preload both GPT and MBR modules so that they are not missed
 GRUB_PRELOAD_MODULES="part_gpt part_msdos"
 
@@ -44,16 +44,14 @@ GRUB_DISABLE_RECOVERY=true
 
 # Uncomment one of them for the gfx desired, a image background or a gfxtheme
 #GRUB_BACKGROUND="/path/to/wallpaper"
-GRUB_THEME=/boot/grub/themes/CyberRe/theme.txt
+GRUB_THEME=/boot/grub/themes/EndeavourOS/theme.txt
 
 # Uncomment to get a beep at GRUB start
 #GRUB_INIT_TUNE="480 440 1"
 
 # Uncomment to make GRUB remember the last selection. This requires
 # setting 'GRUB_DEFAULT=saved' above.
-GRUB_SAVEDEFAULT=true
+#GRUB_SAVEDEFAULT=true
 
 # Uncomment to disable submenus in boot menu
 GRUB_DISABLE_SUBMENU=y
-
-GRUB_DISABLE_OS_PROBER=false

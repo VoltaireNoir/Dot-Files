@@ -46,10 +46,10 @@ XF86AudioLowerVolume
 	pulsemixer --change-volume -2
 
 XF86MonBrightnessUp
-	light -A 2 && light -O
+	brightnessctl s +2
 
 XF86MonBrightnessDown
-	light -U 2 && light -O
+	brightnessctl s 2-
 
 # Screenshot Options
 
