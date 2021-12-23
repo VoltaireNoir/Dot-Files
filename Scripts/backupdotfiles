@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-cd ~/ && cp -f .zshrc .p10k.zsh .xinitrc ConfigBackup/Dot-Files/
+cd ~/ && cp -f .slstatus/config.h .zshrc .p10k.zsh .xinitrc ConfigBackup/Dot-Files/
 
 cp -rf .config/dunst .config/qtile .config/picom .config/bspwm .config/sxhkd .config/polybar .config/kitty .config/ranger ConfigBackup/Dot-Files/.config/
 
