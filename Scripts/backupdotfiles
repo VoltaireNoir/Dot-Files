@@ -25,7 +25,7 @@ cp .vim/vimrc ConfigBackup/Dot-Files/etc/
 
 # Copy ncmpcpp config
 cp -rf .config/ncmpcpp ConfigBackup/Dot-Files/.config/
-cp -rf .config/mpd ConfigBackup/Dot-Filtes/.config
+cp -rf .config/mpd ConfigBackup/Dot-Files/.config
 
 # Push changes to Github
 cd ConfigBackup/Dot-Files/ && git add . && git commit -m "update" && git push
