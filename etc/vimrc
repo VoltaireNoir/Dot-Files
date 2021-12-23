@@ -55,4 +55,6 @@ let skip_defaults_vim=1
 
 colorscheme nord
 let g:airline_powerline_fonts = 1
+set scrolloff=3
 set mouse=a
+set clipboard=unnamedplus

@@ -1,11 +1,11 @@
 #!/bin/zsh
 
-cd ~/ && cp -f .zshrc .xmobarrc ConfigBackup/Dot-Files/
+cd ~/ && cp -f .zshrc .p10k.zsh .xinitrc ConfigBackup/Dot-Files/
 
-cp -rf .config/qtile .config/picom .config/bspwm .config/sxhkd .config/polybar .config/kitty ConfigBackup/Dot-Files/.config/
+cp -rf .config/dunst .config/qtile .config/picom .config/bspwm .config/sxhkd .config/polybar .config/kitty .config/picom .config/ranger ConfigBackup/Dot-Files/.config/
 
 # Copy Xmonad Config
-cp -f .config/xmonad/xmonad.hs ~/ConfigBackup/Dot-Files/.xmonad/
+#cp -f .config/xmonad/xmonad.hs ~/ConfigBackup/Dot-Files/.xmonad/
 
 # Copy Custom Rofi config and themes
 cp -f /usr/share/rofi/themes/customblue.rasi /usr/share/rofi/themes/customfullscreen.rasi ~/ConfigBackup/Dot-Files/rofi/themes/ && cp -rf .config/rofi/ ConfigBackup/Dot-Files/.config/
@@ -21,10 +21,11 @@ cp -rf Scripts ConfigBackup/Dot-Files/
 cp /etc/default/grub ConfigBackup/Dot-Files/etc/default/
 
 # Copy VIMRC
-cp /etc/vimrc ConfigBackup/Dot-Files/etc/
+cp .vim/vimrc ConfigBackup/Dot-Files/etc/
 
 # Copy ncmpcpp config
 cp -rf .config/ncmpcpp ConfigBackup/Dot-Files/.config/
+cp -rf .config/mpd ConfigBackup/Dot-Filtes/.config
 
 # Push changes to Github
 cd ConfigBackup/Dot-Files/ && git add . && git commit -m "update" && git push
