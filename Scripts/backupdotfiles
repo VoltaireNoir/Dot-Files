@@ -12,7 +12,7 @@ cp -f /usr/share/rofi/themes/customblue.rasi /usr/share/rofi/themes/customfullsc
 
 # Copy DWM Config
 cp -rf .dwm ConfigBackup/Dot-Files/
-cp -rf .slsstatus ConfigBackup/Dot-Files/
+cp -rf .slsstatus/* ConfigBackup/Dot-Files/.slsstatus/
 
 # Copy Scripts
 cp -rf Scripts ConfigBackup/Dot-Files/
