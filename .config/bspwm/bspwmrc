@@ -3,15 +3,14 @@ export PATH=$PATH:~/Scripts
 
 # Startup
 pgrep -x sxhkd > /dev/null || sxhkd &  
-xrandr --dpi 115
+xrandr --dpi 120
 picom &
-nitrogen --restore &
-light -I
-pkill lxsession
-lxsession &
-/usr/lib/xfce4/notifyd/xfce4-notifyd &
+~/.fehbg
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 killall -q polybar && sleep 0.5
 polybar mainbar -r & disown
+dunst &
+nm-applet &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 

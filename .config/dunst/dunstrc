@@ -196,7 +196,7 @@
     max_icon_size = 32
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/Tela-grey-dark/16/status/:/usr/share/icons/Tela-grey-dark/16/devices/:/usr/share/icons/Tela-grey-dark/16/actions/:/usr/share/icons/Tela-grey-dark/16/apps/:/usr/share/icons/Tela-grey-dark/16/panel/
+    icon_path = /usr/share/icons/Paper/8x8/emblems:/usr/share/icons/Paper/16x16/panel:/usr/share/icons/Paper/16x16/actions:/usr/share/icons/Paper/16x16/apps:/usr/share/icons/Paper/16x16/status:/usr/share/icons/Paper/22x22/panel:/usr/share/icons/Paper/24x24/actions:/usr/share/icons/Paper/24x24/apps:/usr/share/icons/Paper/24x24/devices:/usr/share/icons/Paper/24x24/emblems:/usr/share/icons/Paper/24x24/panel:/usr/share/icons/Paper/24x24/status:/usr/share/icons/Paper/24x24/web
 
     ### History ###
 
@@ -294,14 +294,14 @@
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#2e3440"
     foreground = "#d8dee9"
-    timeout = 10
+    timeout = 8
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
 
 [urgency_normal]
     background = "#2e3440"
     foreground = "#d8dee9"
-    timeout = 10
+    timeout = 8
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon
 

@@ -20,7 +20,7 @@ alt + Tab
 	rofi -show window
 
 super + o ; {f,F,b,d,m,s,l,t,o,M,q,r,w,R,n}
-        {kitty ranger,thunar,firefox,discord,kitty ncmpcpp &! sleep 0.1; kitty cava,steam,logseq,telegram-desktop,obs,spotify,qbittorrent,roam-research,firefoxpwa site launch 01FGS4M1ET8XF0GV92XGEYJ4G5,pw-jack -p 256 reaper,standard-notes}
+        {kitty ranger,nautilus,firefox,discord,kitty ncmpcpp &! sleep 0.1; kitty cava,steam,logseq,telegram-desktop,obs,spotify,qbittorrent,roam-research,firefoxpwa site launch 01FQTTGK6682KTTBGBV7PD2TX8,pw-jack -p 256 reaper,standard-notes}
 
 super + o ; {c}
 	{code}
@@ -36,20 +36,20 @@ super + shift + w
 
 # Brightness and Volume Controls
 
-XF86AudioMute
+#XF86AudioMute
 	pulsemixer --toggle-mute
 
-XF86AudioRaiseVolume
+#XF86AudioRaiseVolume
 	pulsemixer --change-volume +2
 
-XF86AudioLowerVolume
+#XF86AudioLowerVolume
 	pulsemixer --change-volume -2
 
 XF86MonBrightnessUp
-	brightnessctl s +2
+	brightnessctl s +2 ; brightnessctl -d amdgpu_bl1 s +2
 
 XF86MonBrightnessDown
-	brightnessctl s 2-
+	brightnessctl s 2- ; brightnessctl -d amdgpu_bl1 s 2-
 
 # Screenshot Options
 

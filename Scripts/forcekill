@@ -1,2 +1,7 @@
 #!/bin/sh
-pkill $(ps -e | grep $(xdotool getwindowpid $(xdotool getwindowfocus)) | grep -v grep | awk '{print $4}')
+# Old way
+#pkill $(ps -e | grep $(xdotool getwindowpid $(xdotool getwindowfocus)) | grep -v grep | awk '{print $4}')
+
+# New Way
+
+pkill $(xdotool getactivewindow getwindowclassname)

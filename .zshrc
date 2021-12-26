@@ -54,6 +54,8 @@ alias data="cd /mnt/data"
 alias vpnc="protonvpn-cli c"
 alias vpnd="protonvpn-cli d"
 alias bsp="startx ~/.xinitrc bspwm"
+alias sys="systemctl"
+alias sysu="systemctl --user"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
