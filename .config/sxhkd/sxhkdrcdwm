@@ -54,13 +54,13 @@ XF86MonBrightnessDown
 # Screenshot Options
 
 Print
-	xfce4-screenshooter -f
+	scrot ~/Pictures/%Y-%m-%d_screenshot.png	
 
 shift + Print
-	xfce4-screenshooter -r
+	scrot --select ~/Pictures/%Y-%m-%d_screenshot.png	
 
 ctrl + Print
-	xfce4-screenshooter -w
+	scrot --focused ~/Pictures/%Y-%m-%d_screenshot.png	
 
 # MPD Controls
 
