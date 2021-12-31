@@ -11,7 +11,7 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 26;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int user_bh            = 27;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const char *fonts[]          = { "RobotoMono Nerd Font:size=9"};
 //static const char *fonts[]          = { "unifont:size=8" };
 static const char dmenufont[]       = "monospace:size=10";
@@ -38,7 +38,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "充", "", "", "", "龎", "", "", "" };
+static const char *tags[] = { "", "充", "", "", "", "", "", "", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -50,7 +50,11 @@ static const Rule rules[] = {
 	{ "origin.exe",     NULL,       NULL,       0,            1,           -1 },
 	{ "gammy",     NULL,       NULL,       0,            1,           -1 },
 	{ "Steam",     NULL,       NULL,       1 << 6,            1,           -1 },
+	{ "Lutris",     NULL,       NULL,       1 << 6,            0,           -1 },
 	{ "Galculator",     NULL,       NULL,       0,            1,           -1 },
+	{ "TelegramDesktop",     NULL,       NULL,       1 << 5,            0,           -1 },
+	{ "discord",     NULL,       NULL,       1 << 5,            0,           -1 },
+	{ "FFPWA-01FQTTGK6682KTTBGBV7PD2TX8",     NULL,       NULL,       1 << 5,            0,           -1 },
 	{ "obs",     NULL,       "OBS",       1 << 7,            0,           -1 },
 	{ "ncmpc",     NULL,       NULL,       1 << 8,            0,           -1 },
 	{ "cava",     NULL,       NULL,       1 << 8,            0,           -1 },
@@ -91,7 +95,7 @@ static const char *rofi[]  = { "rofi", "-show", "drun", NULL };
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY|ShiftMask,             XK_Tab,           toggleAttachBottom,           {0} },
+	{ MODKEY|ShiftMask,             XK_t,      toggleAttachBottom,           {0} },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = rofi } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
@@ -141,6 +145,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_Tab,    viewnext,       {0} },
 	{ MODKEY,                       XK_bracketright,  viewnext,       {0} },
 	{ MODKEY,                       XK_bracketleft,   viewprev,       {0} },
 	{ MODKEY|ShiftMask,             XK_bracketright,  tagtonext,      {0} },
