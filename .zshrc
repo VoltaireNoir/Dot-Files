@@ -24,7 +24,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Aliases
 
-alias s="pacman -Ss"
+alias s="paru --repo"
 alias as="paru"
 alias i="sudo pacman -S"
 alias ai="paru -S"

@@ -1,0 +1,16 @@
+#!/bin/sh
+case "$(echo -e "Shutdown\nRestart\nLogout\nSuspend\nHibernate\nLock" | rofi -dmenu \
+    -nb "${COLOR_BACKGROUND:-#151515}" \
+    -nf "${COLOR_DEFAULT:-#aaaaaa}" \
+    -sf "${COLOR_HIGHLIGHT:-#589cc5}" \
+    -sb "#1a1a1a" \
+    -i -p \
+    "Power:" -l 6)" in
+        Shutdown) exec systemctl poweroff;;
+        Restart) exec systemctl reboot;;
+        Logout) exec loginctl kill-session $XDG_SESSION_ID;;
+        Suspend) exec systemctl suspend;;
+	Hibernate) exec systemctl hibernate;;
+        Lock) exec slock;;
+esac
+

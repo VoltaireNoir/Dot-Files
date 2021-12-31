@@ -4,7 +4,7 @@ super + Delete
 	slock
 
 super + q
-	exec ~/Scripts/dmenupowermenu
+	exec ~/Scripts/powermenu
 
 super + z
 	dunstctl set-paused toggle
@@ -19,11 +19,17 @@ super + r
 alt + Tab
 	rofi -show window
 
-super + o ; {f,F,b,d,m,s,l,t,o,M,q,r,w,R,n}
-        {kitty ranger,nautilus,firefox,discord,kitty ncmpcpp &! sleep 0.1; kitty cava,steam,logseq,telegram-desktop,obs,spotify,qbittorrent,roam-research,firefoxpwa site launch 01FQTTGK6682KTTBGBV7PD2TX8,pw-jack -p 256 reaper,standard-notes}
+super + o ; {f,F,b,d,m,s,l,t,O,o,M,q,r,w,R,n}
+        {kitty ranger,nautilus,firefox,discord,kitty --class "ncmpc" ncmpcpp &! sleep 0.1; kitty --class "cava" cava,steam,logseq,telegram-desktop,obs,obsidian,spotify,qbittorrent,roam-research,firefoxpwa site launch 01FQTTGK6682KTTBGBV7PD2TX8,pw-jack -p 256 reaper,standard-notes}
 
 super + o ; {c}
 	{code}
+
+super + x
+	kitty bpytop
+
+super + shift + x
+	kitty htop
 
 super + a
 	kitty pulsemixer
@@ -54,13 +60,13 @@ XF86MonBrightnessDown
 # Screenshot Options
 
 Print
-	scrot ~/Pictures/%Y-%m-%d_screenshot.png	
+	scrot -z -e 'xclip -selection clipboard -t image/png -i $f' ~/Pictures/%Y-%m-%d_screenshot.png	
 
 shift + Print
-	scrot --select ~/Pictures/%Y-%m-%d_screenshot.png	
+	scrot -z -e 'xclip -selection clipboard -t image/png -i $f' --select ~/Pictures/%Y-%m-%d_screenshot.png	
 
 ctrl + Print
-	scrot --focused ~/Pictures/%Y-%m-%d_screenshot.png	
+	scrot -z -e 'xclip -selection clipboard -t image/png -i $f' --focused ~/Pictures/%Y-%m-%d_screenshot.png	
 
 # MPD Controls
 
