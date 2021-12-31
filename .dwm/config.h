@@ -16,15 +16,15 @@ static const char *fonts[]          = { "RobotoMono Nerd Font:size=9"};
 //static const char *fonts[]          = { "unifont:size=8" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#2e3440";
-//static const char col_gray1[]       = "#222222";
+//static const char col_gray1[]       = "#2e3440";
 //static const char col_gray2[]       = "#444444";
 static const char col_gray2[]       = "#3b4252";
 //static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray3[]       = "#e5e9f0";
+static const char col_gray3[]       = "#d8dee9";
 //static const char col_gray4[]       = "#eeeeee";
 static const char col_gray4[]       = "#2e3440";
-static const char col_cyan[]        = "#00c1d6";
-//static const char col_cyan[]        = "#005577";
+//static const char col_cyan[]        = "#00c1d6";
+static const char col_cyan[]        = "#bf616a";
 static const char col_white[]       = "#d8dee9";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
