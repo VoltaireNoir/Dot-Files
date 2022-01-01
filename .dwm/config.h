@@ -56,6 +56,7 @@ static const Rule rules[] = {
 	{ "discord",     NULL,       NULL,       1 << 5,            0,           -1 },
 	{ "FFPWA-01FQTTGK6682KTTBGBV7PD2TX8",     NULL,       NULL,       1 << 5,            0,           -1 },
 	{ "obs",     NULL,       "OBS",       1 << 7,            0,           -1 },
+	{ "resolve",     NULL,       NULL,       1 << 7,            0,           -1 },
 	{ "ncmpc",     NULL,       NULL,       1 << 8,            0,           -1 },
 	{ "cava",     NULL,       NULL,       1 << 8,            0,           -1 },
 };
