@@ -1,0 +1,11 @@
+#!/bin/sh
+# The size of the album art to be displayed
+export KUNST_SIZE="940x510"
+
+# The position where the album art should be displayed
+export KUNST_POSITION="+0+0"
+
+# Where your music is located
+export KUNST_MUSIC_DIR="~/Data/Music/"
+
+kunst

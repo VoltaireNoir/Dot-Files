@@ -9,7 +9,7 @@ bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 #zstyle : ":completion:*" menu select
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*' gain-privilages 1
 
 autoload -Uz compinit
 compinit
@@ -49,5 +49,10 @@ alias vpnd="protonvpn-cli d"
 alias bsp="startx ~/.xinitrc bspwm"
 alias sys="systemctl"
 alias sysu="systemctl --user"
+alias em="emacs"
 
 eval "$(starship init zsh)"
+#autoload -Uz promptinit
+#promptinit
+
+#prompt fade red

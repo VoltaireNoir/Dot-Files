@@ -1,0 +1,140 @@
+#!/usr/bin/env python
+
+# Import datetime module and get current datetime object
+import os
+from pathlib import Path
+import datetime
+
+current = datetime.datetime.now()
+cday = current.day
+cmonth = current.month
+counter = 0
+
+def loaddb():
+    try:
+        p = Path(__file__).with_name('.birthdaydb')
+        with p.open('r') as db:
+            entries = db.readlines()
+        #db = open(os.path.join(__location__,".birthdaydb", "r"))
+    except:
+        print("Error: Cannot find or open database file. \n")
+        print("Tip: Create a file called .birthdaydb in the same directory as the program\nAdd birthdays in the format: Name Month Day")
+        exit()
+
+    #entries = db.readlines()
+    return entries
+
+def numsfx(num):
+    if num.endswith("1"):
+        return f"{num}st"
+    elif num.endswith("2"):
+        return f"{num}nd"
+    elif num.endswith("3"):
+        return f"{num}rd"
+    else:
+        return f"{num}th"
+
+def getmonth(num):
+    months = ['January','February','March','April','May','June','July','August','September','October','November','December']
+    cnum = int(num) - 1
+    return months[cnum]
+
+def getrecent():
+    entries = loaddb()
+    nentries = None
+    for entry in entries:
+        # Ignore empty lines and comments
+        if entry.startswith("#") or entry == "\n":
+            continue
+        bday = entry.split()
+        if nentries is None:
+            nentries = [f"{bday[1]} {bday[2]} {bday[0]}"]
+        else:
+            nentries.append(f"{bday[1]} {bday[2]} {bday[0]}")
+    sort = sorted(nentries, key=lambda x: x.split()[1], reverse=True)
+    print(sort)
+    exit()
+    run = 0
+    wrun = 0
+    x = 0
+    month = cmonth
+    while wrun < 12:
+        entry = entries[x]
+        bday = entry.split()
+        # Ignore empty lines and comments
+        if entry.startswith("#") or entry == "\n":
+            continue
+        if int(bday[1]) == month:
+            print(f"[{c}] {bday[0]}'s birthday is on {numsfx(bday[2])} of {getmonth(bday[1])}")
+            print("---")
+
+print("\nBirthday Calendar - A celendar for those who can't remember shit.\n")
+print()
+
+while True:
+    try:
+        if counter == 0:
+            print("\nWhat would you like to do?\n\n")
+        else:
+            print("\nWhat else would you like to do?\n\n")
+
+        print("Type 1 to check if someone has a birthday today,")
+        print("Type 2 to show all birthdays from the database,")
+        print("Type 'clear' to clear screen or 'exit' to exit (duh).")
+        counter += 1
+
+        userinput = input("\n>")
+        print()
+        if userinput == "exit":
+            print("Have a nice day!")
+            break
+        elif userinput == "clear":
+            os.system('cls' if os.name == 'nt' else "printf '\033c'")
+            counter = 0
+            continue
+        else:
+            option = int(userinput)
+    except:
+        print("Invalid input! Do you even read bro?")
+        counter = 0
+        continue
+
+    if option == 1:
+        entries = loaddb()
+        bdayfound = 0 
+        # Check if there are any birthdays today
+        for entry in entries:
+            # Ignore empty lines and comments
+            if entry.startswith("#") or entry == "\n":
+                continue
+
+            bday = entry.split()
+            if int(bday[1]) == cmonth and int(bday[2]) == cday:
+                print(f"\nBingo! It's {bday[0]}'s birthday today! Now don't forget to wish them.\n")
+                bdayfound = 1
+
+        if bdayfound == 0:
+            print("\nSorry, no birthdays found for today. Now that calls for a celebration!")
+            opt = input("\nShow three upcoming birthdays instead? (y/n)\n\n>")
+            if opt == "y":
+                getrecent()
+
+    elif option == 2:
+        # Open database file and get lines into the entries variable
+        entries = loaddb()
+        entries.sort()
+        print("Right outta birthday database:\n")
+        c = 0
+        # Iterate through all the entries and print them out
+        for entry in entries:
+            # Ignore empty lines and comments
+            if entry.startswith("#") or entry == "\n":
+                continue
+            c += 1
+            bday = entry.split()
+            print(f"[{c}] {bday[0]}'s birthday is on {numsfx(bday[2])} of {getmonth(bday[1])}")
+            print("")
+
+    else:
+        print("No valid option selected")
+        continue
