@@ -19,7 +19,7 @@ super + r
 alt + Tab
 	rofi -show window
 
-super + o ; {f,F,b,B,d,m,s,l,t,o,O,M,q,r,w,R,n}
+super + o ; {f,F,b,B,d,m,s,l,t,O,o,M,q,r,w,R,n}
         {kitty ranger,nautilus,firefox,firefox --private-window,discord,kitty --class "ncmpc" ncmpcpp &! sleep 0.1; kitty --class "cava" cava,steam,logseq,telegram-desktop,obs,obsidian,spotify,qbittorrent,roam-research,firefoxpwa site launch 01FQTTGK6682KTTBGBV7PD2TX8,pw-jack -p 256 reaper,standard-notes}
 
 super + o ; {c,e}

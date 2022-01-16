@@ -1,4 +1,4 @@
-export PATH=$PATH:~/Scripts
+export PATH=$PATH:~/Scripts:~/pyp
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
