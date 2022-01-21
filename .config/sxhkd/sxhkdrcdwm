@@ -6,12 +6,6 @@ super + Delete
 super + q
 	exec ~/Scripts/powermenu
 
-super + z
-	dunstctl set-paused toggle
-
-super + shift + z
-	dunstctl history-pop
-
 # program launcher
 super + r
 	rofi -show run
@@ -22,8 +16,11 @@ alt + Tab
 super + o ; {f,F,b,B,d,m,s,l,t,O,o,M,q,r,w,R,n}
         {kitty ranger,nautilus,firefox,firefox --private-window,discord,kitty --class "ncmpc" ncmpcpp &! sleep 0.1; kitty --class "cava" cava,steam,logseq,telegram-desktop,obs,obsidian,spotify,qbittorrent,roam-research,firefoxpwa site launch 01FQTTGK6682KTTBGBV7PD2TX8,pw-jack -p 256 reaper,standard-notes}
 
-super + o ; {c,e}
-	{code,emacs}
+super + o ; {c}
+	{code}
+
+super + e
+    emacs
 
 super + x
 	kitty bpytop
@@ -37,18 +34,21 @@ super + a
 super + shift + a
 	pavucontrol
 
+super + slash
+    kitty nmtui
+
 super + shift + w
 	forcekill
 
 # Brightness and Volume Controls
 
-#XF86AudioMute
+XF86AudioMute
 	pulsemixer --toggle-mute
 
-#XF86AudioRaiseVolume
+XF86AudioRaiseVolume
 	pulsemixer --change-volume +2
 
-#XF86AudioLowerVolume
+XF86AudioLowerVolume
 	pulsemixer --change-volume -2
 
 XF86MonBrightnessUp
@@ -56,6 +56,13 @@ XF86MonBrightnessUp
 
 XF86MonBrightnessDown
 	brightnessctl s 2- ; brightnessctl -d amdgpu_bl1 s 2-
+
+# Notifications Control
+super + z
+	notify-send "Notifications On"; dunstctl set-paused toggle
+
+super + shift + z
+	dunstctl history-pop
 
 # Screenshot Options
 

@@ -1,4 +1,4 @@
-export PATH=$PATH:~/Scripts:~/pyp
+export PATH=$PATH:~/Scripts:~/pyp:~/.emacs.d/bin
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
@@ -46,7 +46,7 @@ alias incognito="sudo incognito"
 alias data="cd /mnt/data"
 alias vpnc="protonvpn-cli c"
 alias vpnd="protonvpn-cli d"
-alias bsp="startx ~/.xinitrc bspwm"
+alias startx="startx ~/.xinitrc"
 alias sys="systemctl"
 alias sysu="systemctl --user"
 alias em="emacs"

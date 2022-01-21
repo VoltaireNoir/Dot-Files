@@ -1,0 +1,3 @@
+#!/usr/bin/sh
+
+light | awk -F'.' 'END{ print $1 }'
