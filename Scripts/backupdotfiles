@@ -8,7 +8,7 @@ cp -rf .config/dunst .config/qtile .config/picom .config/bspwm .config/sxhkd .co
 #cp -f .config/xmonad/xmonad.hs ~/ConfigBackup/Dot-Files/.xmonad/
 
 # Copy Custom Rofi config and themes
-cp -f /usr/share/rofi/themes/customblue.rasi /usr/share/rofi/themes/customfullscreen.rasi ~/ConfigBackup/Dot-Files/rofi/themes/ && cp -rf .config/rofi/ ConfigBackup/Dot-Files/.config/
+cp -f /usr/share/rofi/themes/{customblue.rasi,customfullscreen.rasi,customnordfull.rasi} ~/ConfigBackup/Dot-Files/rofi/themes/ && cp -rf .config/rofi/ ConfigBackup/Dot-Files/.config/
 
 # Copy DWM Config
 cp -rf .dwm ConfigBackup/Dot-Files/
