@@ -49,7 +49,7 @@ alias vpnd="protonvpn-cli d"
 alias startx="startx ~/.xinitrc"
 alias sys="systemctl"
 alias sysu="systemctl --user"
-alias em="emacs"
+alias em="emacs -nw"
 
 eval "$(starship init zsh)"
 #autoload -Uz promptinit
