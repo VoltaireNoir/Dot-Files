@@ -1,5 +1,5 @@
 #!/bin/sh
-export PATH=$PATH:~/Scripts
+export PATH=$PATH:~/{Scripts,pyp}
 
 pkill sxhkd
 pkill picom

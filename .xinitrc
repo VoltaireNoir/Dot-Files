@@ -16,6 +16,7 @@ case $session in
     dwm		) 	xrandr --dpi 120
 	    		exec dwm;;
     bspwm       )	exec bspwm;;
+    xmonad      )	exec xmonad;;
     # No known session, try to run it as command
     *                 ) exec $1;;
 esac

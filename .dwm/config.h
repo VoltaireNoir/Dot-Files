@@ -3,7 +3,7 @@
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 8;        /* gaps between windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int snap      = 25;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -12,33 +12,39 @@ static const int showsystray        = 1;     /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int user_bh            = 27;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]          = { "RobotoMono Nerd Font:size=9"};
-//static const char *fonts[]          = { "unifont:size=8" };
+//static const char *fonts[]          = { "RobotoMono Nerd Font:style=Regular:size=9"};
+static const char *fonts[]          = { "NotoSansMono Nerd Font:style=ExtraCondensed,Regular:size=9","NotoEmoji Nerd Font:style=Book:size=9"};
+//static const char *fonts[]          = { "UbuntuMono Nerd Font:size=10"};
+//static const char *fonts[]          = { "DroidSansMono Nerd Font:style=Book:size=8"};
 static const char dmenufont[]       = "monospace:size=10";
-static const char col_gray1[]       = "#2e3440";
-//static const char col_gray1[]       = "#2e3440";
-//static const char col_gray2[]       = "#444444";
+static const char col_gray1[]       = "#ebcb8b";
 static const char col_gray2[]       = "#3b4252";
-//static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray3[]       = "#d8dee9";
-//static const char col_gray4[]       = "#eeeeee";
 static const char col_gray4[]       = "#2e3440";
-//static const char col_cyan[]        = "#00c1d6";
 static const char col_cyan[]        = "#bf616a";
 static const char col_white[]       = "#d8dee9";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	[SchemeNorm] = { col_gray3, col_gray4, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_white  },
-	[SchemeStatus]   = { col_gray3, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
-	[SchemeTagsSel]  = { col_gray4, col_cyan,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
-        [SchemeTagsNorm] = { col_gray3, col_gray1,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-        [SchemeInfoSel]  = { col_gray4, col_cyan,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
-        [SchemeInfoNorm] = { col_gray3, col_gray1,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+	[SchemeStatus]   = {col_gray3, col_gray4,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+	[SchemeTagsSel]  = {"#88c0d0", col_gray4,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+        [SchemeTagsNorm] = { col_gray3, col_gray4,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+        [SchemeInfoSel]  = {col_gray4, "#d8dee9",  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+        [SchemeInfoNorm] = { col_gray3, col_gray4,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
 static const char *tags[] = { "", "充", "", "", "", "", "", "", "" };
+
+static const unsigned int ulinepad	= 0;	/* horizontal padding between the underline and tag */
+static const unsigned int ulinestroke	= 9;	/* thickness / height of the underline */
+static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
+static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
+static const char ptagf[] = "[%s %s]";	/* format of a tag label */
+static const char etagf[] = "[%s]";	/* format of an empty tag */
+static const int lcaselbl = 0;		/* 1 means make tag label lowercase */
+
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -47,10 +53,11 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "origin.exe",     NULL,       NULL,       0,            1,           -1 },
 	{ "gammy",     NULL,       NULL,       0,            1,           -1 },
+	{ "origin.exe",     NULL,       NULL,       1 << 6,            1,           -1 },
 	{ "Steam",     NULL,       NULL,       1 << 6,            1,           -1 },
 	{ "Lutris",     NULL,       NULL,       1 << 6,            0,           -1 },
+	{ "heroic",     NULL,       NULL,       1 << 6,            0,           -1 },
 	{ "Galculator",     NULL,       NULL,       0,            1,           -1 },
 	{ "TelegramDesktop",     NULL,       NULL,       1 << 5,            0,           -1 },
 	{ "discord",     NULL,       NULL,       1 << 5,            0,           -1 },
@@ -60,7 +67,7 @@ static const Rule rules[] = {
 	{ "ncmpc",     NULL,       NULL,       1 << 8,            0,           -1 },
 	{ "cava",     NULL,       NULL,       1 << 8,            0,           -1 },
 	{ "Spotify",     NULL,       NULL,       1 << 8,            0,           -1 },
-	{ "Sxiv",     NULL,       NULL,       1 << 8,            0,           -1 },
+	{ "broken",     NULL,       NULL,       1 << 8,            0,           -1 },
 };
 
 /* layout(s) */

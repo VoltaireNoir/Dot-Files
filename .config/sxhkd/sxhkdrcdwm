@@ -14,7 +14,7 @@ alt + Tab
 	rofi -show window
 
 super + o ; {f,F,b,B,d,m,s,l,t,O,o,M,q,r,w,R,n}
-        {kitty ranger,nautilus,firefox,firefox --private-window,discord,kitty --class "ncmpc" ncmpcpp &! sleep 0.1; kitty --class "cava" cava,steam,logseq,telegram-desktop,obs,obsidian,spotify,qbittorrent,roam-research,firefoxpwa site launch 01FQTTGK6682KTTBGBV7PD2TX8,pw-jack -p 256 reaper,standard-notes}
+        {kitty ranger,nautilus,firefox,firefox --private-window,discord,kitty --class "ncmpc" ncmpcpp &! sleep 0.1; kitty --class "cava" cava,steam,logseq,telegram-desktop,obs,obsidian,spotify,qbittorrent,roam-research,firefoxpwa site launch 01FQTTGK6682KTTBGBV7PD2TX8,PIPEWIRE_LATENCY="128/48000" reaper,standard-notes}
 
 super + o ; {c}
 	{code}
@@ -59,7 +59,7 @@ XF86MonBrightnessDown
 
 # Notifications Control
 super + z
-	notify-send "Notifications On"; dunstctl set-paused toggle
+	notify-send "Notifications Resumed"; dunstctl set-paused toggle
 
 super + shift + z
 	dunstctl history-pop
@@ -67,13 +67,22 @@ super + shift + z
 # Screenshot Options
 
 Print
-	scrot -z -e 'xclip -selection clipboard -t image/png -i $f' ~/Pictures/%Y-%m-%d_screenshot.png	
+    screenshot
+
+alt + Print
+    screenshot copy
 
 shift + Print
-	scrot -z -e 'xclip -selection clipboard -t image/png -i $f' --select ~/Pictures/%Y-%m-%d_screenshot.png	
+    screenshot select
+
+alt + shift + Print
+    screenshot select-copy
 
 ctrl + Print
-	scrot -z -e 'xclip -selection clipboard -t image/png -i $f' --focused ~/Pictures/%Y-%m-%d_screenshot.png	
+    screenshot window
+
+alt + ctrl + Print
+    screenshot window-copy
 
 # MPD Controls
 
