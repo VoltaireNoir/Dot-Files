@@ -1,11 +1,7 @@
-#!/bin/sh
+#!/usr/bin/sh
 export PATH=$PATH:~/Scripts
 
-xrandr --dpi 120
-lxsession &
-light -I
-nitrogen --restore &
+~/.fehbg &
 picom &
-/usr/lib/xfce4/notifyd/xfce4-notifyd &
-sleep 0.1
-polybar mainbarqt -r & disown
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+dunst &
