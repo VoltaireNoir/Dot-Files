@@ -27,6 +27,7 @@ import os, subprocess
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Match, Screen, Key, EzKey, KeyChord
 from libqtile.lazy import lazy
+from omnilayout import OmniLayout
 
 mod = "mod4"
 terminal = "kitty"
@@ -65,7 +66,7 @@ keys = [
     # multiple stack panes
     Key(
         [mod, "shift"],
-        "Return",
+        "s",
         lazy.layout.toggle_split(),
         desc="Toggle between split and unsplit sides of stack",
     ),
@@ -106,6 +107,9 @@ keys = [
     #Notifications
     EzKey("M-z", lazy.spawn("dunstctl set-paused toggle")),
     EzKey("M-S-z", lazy.spawn("dunstctl history-pop")),
+    #Process managers
+    EzKey("M-x", lazy.spawn("kitty btm")),
+    EzKey("M-S-x", lazy.spawn("kitty bpytop")),
 
     # Key Chords
     KeyChord([mod],"o", [
@@ -117,7 +121,18 @@ keys = [
         EzKey("t", lazy.spawn("telegram-desktop")),
         EzKey("d", lazy.spawn("discord")),
         EzKey("l", lazy.spawn("logseq")),
-    ])
+    ]),
+
+    #OmniLayout Shortcuts
+    EzKey("M-m",lazy.layout.toggle_autotile()),
+    EzKey("M-S-m",lazy.layout.toggle_automove()),
+    EzKey("M-A-j",lazy.layout.swap_down()),
+    EzKey("M-A-k",lazy.layout.swap_up()),
+    EzKey("M-A-l",lazy.layout.swap_right()),
+    EzKey("M-A-h",lazy.layout.swap_left()),
+    EzKey("M-S-<Return>",lazy.layout.swap_to_largest()),
+    EzKey("M-<minus>",lazy.layout.dec_maxstack()),
+    EzKey("M-<equal>",lazy.layout.inc_maxstack()),
 ]
 
 groups = [Group(i) for i in "123456789"]
@@ -146,7 +161,7 @@ for i in groups:
         ]
     )
 
-cols = layout.Columns(
+omni = OmniLayout(
         border_focus="#eceff4",
         border_focus_stack="#88c0d0",
         border_normal="#2e3440",
@@ -155,13 +170,12 @@ cols = layout.Columns(
         insert_position=1,
         margin=6
     )
-cols.name = "Cols"
 
 maxi = layout.Max(margin=6)
 maxi.name = "Max"
 
 layouts = [
-    cols,
+    omni,
     maxi,
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -287,3 +301,5 @@ def autostart():
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+# ---
