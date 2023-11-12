@@ -1,11 +1,11 @@
-#!/bin/zsh
+#!/bin/bash
 
 cd ~/ && cp -f .slstatus/config.h .zshrc .p10k.zsh .xinitrc ConfigBackup/Dot-Files/
 
-cp -rf .config/dunst .config/qtile .config/picom .config/bspwm .config/sxhkd .config/polybar .config/kitty .config/ranger .config/neofetch .config/cava ConfigBackup/Dot-Files/.config/
+cp -rf ~/.config/{dunst, qtile, picom, bspwm, sxhkd, polybar, kitty, ranger, neofetch, cava, helix} ~/ConfigBackup/Dot-Files/.config/
 
 # Copy Xmonad Config
-#cp -f .config/xmonad/xmonad.hs ~/ConfigBackup/Dot-Files/.xmonad/
+# cp -f .config/xmonad/xmonad.hs ~/ConfigBackup/Dot-Files/.xmonad/
 
 # Copy Custom Rofi config and themes
 cp -f /usr/share/rofi/themes/{customblue.rasi,customfullscreen.rasi,customnordfull.rasi} ~/ConfigBackup/Dot-Files/rofi/themes/ && cp -rf .config/rofi/ ConfigBackup/Dot-Files/.config/
