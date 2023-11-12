@@ -1,0 +1,63 @@
+theme = "everforest_dark"
+
+[editor]
+line-number = "relative"
+scrolloff = 10
+cursorline = true
+# cursorcolumn = true
+bufferline = "multiple"
+completion-trigger-len = 1
+
+[editor.soft-wrap]
+enable = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+# hidden = false
+max-depth = 5
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control"]
+center = ["file-name"]
+
+[editor.lsp]
+display-messages = true
+# display-inlay-hints = true
+
+# Key bindings
+
+[keys.insert]
+C-o = "normal_mode"
+C-f = "move_char_right"
+C-b = "move_char_left"
+
+[keys.normal]
+D = ["extend_to_line_end", "delete_selection"]
+Y = ["extend_to_line_end", "yank"]
+H = "goto_first_nonwhitespace"
+L = "goto_line_end"
+G = "goto_file_end"
+A-j = "insert_newline"
+X = ["goto_first_nonwhitespace", "extend_to_line_end"]
+A-x = "extend_line_above"
+C-r = ":reload-all"
+A-r = ":reload"
+
+[keys.normal."space"]
+q = ":buffer-close"
+
+[keys.normal."+"]
+b = ":run-shell-command cargo build"
+B = ":run-shell-command cargo build -r"
+t = ":run-shell-command cargo test"
+r = ":run-shell-command cargo run"
+R = ":run-shell-command cargo run -r"
+
+[keys.select]
+G = "goto_file_end"
+H = "goto_first_nonwhitespace"
+L = "goto_line_end"

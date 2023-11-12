@@ -2,7 +2,7 @@
 
 cd ~/ && cp -f .slstatus/config.h .zshrc .p10k.zsh .xinitrc ConfigBackup/Dot-Files/
 
-cp -rf ~/.config/{dunst, qtile, picom, bspwm, sxhkd, polybar, kitty, ranger, neofetch, cava, helix} ~/ConfigBackup/Dot-Files/.config/
+cp -rf ~/.config/{dunst,qtile,picom,bspwm,sxhkd,polybar,kitty,ranger,neofetch,cava,helix} ~/ConfigBackup/Dot-Files/.config/
 
 # Copy Xmonad Config
 # cp -f .config/xmonad/xmonad.hs ~/ConfigBackup/Dot-Files/.xmonad/
