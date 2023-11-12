@@ -9,14 +9,18 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-# Here Xfce is kept as default
-session=${1:-dwm}
+# Default wm
+session=${1:-qtile}
 
 case $session in
     dwm		) 	xrandr --dpi 120
-	    		exec dwm;;
+              export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
+	    		    exec dwm;;
     bspwm       )	exec bspwm;;
-    xmonad      )	exec xmonad;;
+    qtile       )   xrandr --dpi 120
+                    exec qtile start;;
+    leftwm      )   exec dbus-launch leftwm;;
+    xmonad      )   exec xmonad;;
     # No known session, try to run it as command
     *                 ) exec $1;;
 esac

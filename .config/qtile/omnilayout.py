@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from libqtile.layout.base import Layout, _ClientList
 from libqtile import layout
+
 # Implement swap functionality in Columns layout
 class Column(_ClientList):
     # shortcuts for current client and index used in Columns layout
@@ -47,9 +48,9 @@ class Column(_ClientList):
             self.current_client = client
         self.update_height(client, height)
 
-    def place(self, client, height, pos):
+    def place(self, client, height, pos, current=True):
         self.clients.insert(pos, client)
-        self.current_client = client
+        if current: self.current_client = client
         self.update_height(client, height)
 
     def remove(self, client):
@@ -75,7 +76,7 @@ class Column(_ClientList):
         )
 
 class OmniLayout(layout.Columns):
-    def __init__(self, autotile=True, automove=True, max_stack=3, **config):
+    def __init__(self, autotile=True, automove=True, max_stack=3, labels=True, **config):
         Layout.__init__(self, **config)
         self.add_defaults(layout.Columns.defaults)
         self.columns = [Column(self.split, self.insert_position)]
@@ -99,21 +100,23 @@ class OmniLayout(layout.Columns):
             self.columns.append(c)
         return c
 
-    def add(self, client):
+    def add(self, client, current=True):
         c = self.cc
         condition1 = len(c) > 0 and len(self.columns) < self.num_columns
         condition2 = self.autotile and (len(self.columns) > 1 and len(self.columns[-1]) >= self.max_stack)
-        if condition1 or condition2:
-            c = self.add_column()
-        elif self.fair:
-            least = min(self.columns, key=len)
-            if len(least) < len(c):
-                c = least
-        elif self.autotile:
-            c = self.columns[-1]
+        if c.split:
+            if condition1 or condition2:
+                c = self.add_column()
+            elif self.fair:
+                least = min(self.columns, key=len)
+                if len(least) < len(c):
+                    c = least
+            elif self.autotile:
+                c = self.columns[-1]
 
         self.current = self.columns.index(c)
-        c.add_to_tail(client) if self.autotile else c.add(client)
+
+        c.add_to_tail(client,current=current) if self.autotile else c.add(client)
 
     def remove(self, client):
         remove = None
@@ -124,27 +127,37 @@ class OmniLayout(layout.Columns):
                     remove = c
                 break
         # Automove windows when there are less windows than max stack config
-        if self.automove and self.autotile and not remove:
-            self.adjust_clients()
-
+        removed = None
         if remove is not None:
-            self.remove_column(c)
+            removed = self.columns.index(remove)
+            self.remove_column(remove)
+        if self.automove and self.autotile:
+            self.adjust_clients(self.current, removed)
+
         return self.columns[self.current].cw
 
-    def adjust_clients(self):
-        ccidx, collen = self.columns.index(self.cc), len(self.columns)
-        adjust = len(self.cc) < self.max_stack and ccidx+1 != collen and ccidx != 0
-        if adjust:
+    def adjust_clients(self, ccidx, removed = None):
+        collen = len(self.columns)
+        currentcol = self.columns[ccidx]
+        regadjust = len(currentcol) < self.max_stack and ccidx+1 != collen
+        if regadjust and ccidx != 0:
             for c in self.columns[ccidx:-1]:
                 if len(c) < self.max_stack:
                     nexti = self.columns.index(c) + 1
                     nextc = self.columns[nexti]
                     win = nextc.focus_first()
                     nextc.remove(win)
-                    self.columns[ccidx].add_to_tail(win,current=False)
-                    ccidx += 1
-            if len(self.columns[-1]) == 0:
-                self.remove_column(self.columns[-1])
+                    c.add_to_tail(win, current=False)
+        elif removed == 0:
+            top = self.cc.focus_first()
+            self.cc.remove(top)
+            self.add_column(prepend=True).add_to_tail(top,current=True)
+            self.current = 0
+            if collen > 1 and len(self.columns[1]) < self.max_stack:
+                self.adjust_clients(1)
+
+        if len(self.columns[-1]) == 0:
+            self.remove_column(self.columns[-1])
 
     def focus_next(self, win):
         """Returns the next client after 'win' in layout,
@@ -265,3 +278,30 @@ class OmniLayout(layout.Columns):
 
     def cmd_dec_maxstack(self):
         self.max_stack -= 1
+
+    def cmd_normalize_height(self):
+        for client in self.cc:
+            self.cc.heights[client] = 100
+        self.group.layout_all()
+
+    def cmd_normalize_width(self):
+        for col in self.columns:
+            col.width = 100
+        self.group.layout_all()
+
+    def cmd_reset(self):
+        clients = []
+        for col in self.columns:
+            for cl in col:
+                clients.append(cl)
+                col.remove(cl)
+                if len(col) == 0:
+                    self.remove_column(col)
+        if clients:
+            for cl in clients:
+                self.add(cl)
+            self.cmd_normalize()
+            self.current = 0
+            self.cc.current_client = self.cc.focus_first()
+            self.cc.focus(self.cc.focus_first())
+

@@ -1,0 +1,17 @@
+#! /usr/bin/env python3
+import sys
+
+# This script converts a string into a properly formatter formal argument
+if len(sys.argv) > 1:
+    args = sys.argv[1].split(";")
+    if len(args) > 1:
+        pstring = ""
+        p = 0
+        conc = args[-1]
+        for premise in args[:-1]:
+            p += 1
+            pstring += f"P{p}: {premise.capitalize()}\n"
+        pstring += f"C: {conc.capitalize()}"
+        print(pstring)
+    else:
+        print("You must provide at least one premise and one conclusion.\nNote: Argument should be one string, with premises and conclusion seperated with ';'\nEx: 'premise1;premise2;conclusion'")

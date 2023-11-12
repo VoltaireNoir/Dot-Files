@@ -16,17 +16,17 @@ alt + Tab
 super + o ; {f,F,b,B,d,m,s,l,t,O,o,M,q,r,w,R,n}
         {kitty ranger,nautilus,firefox,firefox --private-window,discord,kitty --class "ncmpc" ncmpcpp &! sleep 0.1; kitty --class "cava" cava,steam,logseq,telegram-desktop,obs,obsidian,spotify,qbittorrent,roam-research,firefoxpwa site launch 01FQTTGK6682KTTBGBV7PD2TX8,PIPEWIRE_LATENCY="128/48000" reaper,standard-notes}
 
-super + o ; {c}
-	{code}
+super + o ; {c,v}
+	{code,neovide}
 
 super + e
-    emacs
+    kitty nvim
 
 super + x
-	kitty bpytop
+	kitty btm
 
 super + shift + x
-	kitty htop
+	kitty bpytop
 
 super + a
 	kitty pulsemixer
@@ -52,10 +52,22 @@ XF86AudioLowerVolume
 	pulsemixer --change-volume -2
 
 XF86MonBrightnessUp
-	brightnessctl s +2 ; brightnessctl -d amdgpu_bl1 s +2
+    blight inc 10 -s
 
 XF86MonBrightnessDown
-	brightnessctl s 2- ; brightnessctl -d amdgpu_bl1 s 2-
+    blight dec 10 -s
+
+ctrl + XF86MonBrightnessUp
+    blight inc 100 -s
+
+ctrl + XF86MonBrightnessDown
+    blight dec 100 -s
+
+shift + XF86MonBrightnessUp
+	blight inc 1
+
+shift + XF86MonBrightnessDown
+	blight dec 1
 
 # Notifications Control
 super + z

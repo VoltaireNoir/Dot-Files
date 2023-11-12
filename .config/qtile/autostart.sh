@@ -5,3 +5,4 @@ export PATH=$PATH:~/Scripts
 picom &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 dunst &
+blight-notify &

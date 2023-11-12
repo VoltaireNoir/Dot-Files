@@ -51,6 +51,10 @@ alias sys="systemctl"
 alias sysu="systemctl --user"
 alias em="emacs -nw"
 
+goto() {
+  cd $(markd g $1);
+}
+
 eval "$(starship init zsh)"
 #autoload -Uz promptinit
 #promptinit

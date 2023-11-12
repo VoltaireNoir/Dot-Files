@@ -406,7 +406,7 @@ media_library_hide_album_dates = yes
 #
 cyclic_scrolling = yes
 #
-lyrics_fetchers = azlyrics, genius, musixmatch, sing365, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszoveg, internet
+lyrics_fetchers = azlyrics, musixmatch, sing365, metrolyrics, justsomelyrics, jahlyrics, plyrics, tekstowo, zeneszoveg, internet
 #
 follow_now_playing_lyrics = yes
 #

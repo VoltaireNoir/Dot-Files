@@ -37,12 +37,8 @@ static const char *colors[][3]      = {
 /* tagging */
 static const char *tags[] = { "", "充", "", "", "", "", "", "", "" };
 
-static const unsigned int ulinepad	= 0;	/* horizontal padding between the underline and tag */
-static const unsigned int ulinestroke	= 9;	/* thickness / height of the underline */
-static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
-static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
-static const char ptagf[] = "[%s %s]";	/* format of a tag label */
-static const char etagf[] = "[%s]";	/* format of an empty tag */
+static const char ptagf[] = "%s %s";	/* format of a tag label */
+static const char etagf[] = "%s";	/* format of an empty tag */
 static const int lcaselbl = 0;		/* 1 means make tag label lowercase */
 
 
@@ -53,6 +49,7 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "Blanket",     NULL,       NULL,       0,            1,           -1 },
 	{ "gammy",     NULL,       NULL,       0,            1,           -1 },
 	{ "origin.exe",     NULL,       NULL,       1 << 6,            1,           -1 },
 	{ "Steam",     NULL,       NULL,       1 << 6,            1,           -1 },
@@ -79,9 +76,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[T]",      tile },    /* first entry is default */
+	{ "[]=",      tile },    /* first entry is default */
 	{ "[M]",      monocle },
-	{ "[F]",      NULL },    /* no layout function means floating behavior */
+	{ "><>",      NULL },    /* no layout function means floating behavior */
 };
 
 /* key definitions */
@@ -90,8 +87,8 @@ static const Layout layouts[] = {
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} }, \
-	{ MODKEY|Mod1Mask,           KEY,      swaptags,       {.ui = 1 << TAG} },
+	{ MODKEY|Mod1Mask,              KEY,      toggletag,      {.ui = 1 << TAG} }, \
+	{ MODKEY|ControlMask|ShiftMask, KEY,      swaptags,       {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }

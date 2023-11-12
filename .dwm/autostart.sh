@@ -1,5 +1,6 @@
-#!/bin/sh
-export PATH=$PATH:~/{Scripts,pyp}
+#!/bin/bash
+export PATH=$PATH:~/{Scripts,rs}
+export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 
 pkill sxhkd
 pkill picom
