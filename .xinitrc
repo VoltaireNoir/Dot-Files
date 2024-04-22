@@ -20,6 +20,7 @@ case $session in
     qtile       )   xrandr --dpi 120
                     exec qtile start;;
     leftwm      )   exec dbus-launch leftwm;;
+    spectr)     exec spectrwm -d -c ~/.config/spectrwm/spectrwm.conf;;
     xmonad      )   exec xmonad;;
     # No known session, try to run it as command
     *                 ) exec $1;;

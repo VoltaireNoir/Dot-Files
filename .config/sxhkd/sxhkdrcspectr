@@ -1,0 +1,6 @@
+super + o ; {f,F,b,d,m,s,l,t,o,q,r,w,R,n,}
+        {kitty ranger,nautilus,firefox,discord,spotify,steam,logseq,telegram-desktop,obs,qbittorrent,evince,firefoxpwa site launch 01FGS4M1ET8XF0GV92XGEYJ4G5,pw-jack -p 256 reaper,standard-notes}
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd

@@ -31,7 +31,7 @@ display-messages = true
 # Key bindings
 
 [keys.insert]
-C-o = "normal_mode"
+C-space = "normal_mode"
 C-f = "move_char_right"
 C-b = "move_char_left"
 
@@ -40,15 +40,23 @@ D = ["extend_to_line_end", "delete_selection"]
 Y = ["extend_to_line_end", "yank"]
 H = "goto_first_nonwhitespace"
 L = "goto_line_end"
-G = "goto_file_end"
+G = "goto_word"
 A-j = "insert_newline"
 X = ["goto_first_nonwhitespace", "extend_to_line_end"]
 A-x = "extend_line_above"
 C-r = ":reload-all"
 A-r = ":reload"
+C-w = ":write"
+C-p = "command_mode"
+C-q = ":quit"
+C-A-q = ":quit!"
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 
 [keys.normal."space"]
 q = ":buffer-close"
+l = ":lsp-restart"
+c = ":config-reload"
 
 [keys.normal."+"]
 b = ":run-shell-command cargo build"
